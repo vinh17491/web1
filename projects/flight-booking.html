@@ -1,111 +1,115 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flight Booking System Case Study | Quách Gia Vinh</title>
-  <meta name="description" content="Engineering case study for a React and ASP.NET Core flight booking system with JWT, EF Core, SQLite, checkout and payment service boundaries.">
-  <meta name="theme-color" content="#071018"><meta name="robots" content="index,follow">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Flight Booking — Engineering Case Study | Quách Gia Vinh</title>
+  <meta name="description" content="React and ASP.NET Core flight-booking case study covering JWT auth, EF Core/SQLite, checkout service boundaries and project limitations.">
+  <meta name="theme-color" content="#151b20"><meta name="robots" content="index,follow">
   <link rel="canonical" href="https://vinh17491.github.io/web1/projects/flight-booking.html">
   <link rel="stylesheet" href="../styles.css">
 </head>
-<body>
+<body class="case-page">
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header shell">
-  <a class="brand" href="../index.html"><span class="brand-mark">QV</span><span class="brand-copy"><strong>QUÁCH GIA VINH</strong><small>Engineering case study</small></span></a>
-  <nav class="nav" aria-label="Case study navigation"><a href="../index.html#work">Work</a><a href="../resume.html">Resume</a><a href="https://github.com/vinh17491/web_maybay" target="_blank" rel="noreferrer">Source ↗</a></nav>
+<header class="play-header">
+  <a class="play-logo" href="../index.html"><b>Quách</b><em>Gia Vinh</em></a>
+  <nav class="play-nav" aria-label="Case study navigation">
+    <a href="../index.html#projects">Work</a><a href="../resume.html">Resume</a>
+    <a href="https://github.com/vinh17491/web_maybay" target="_blank" rel="noreferrer">Source ↗</a>
+  </nav>
+  <button class="play-menu" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
 </header>
+
 <main id="main">
-<section class="case-hero shell">
-  <a class="back-link" href="../index.html#work">← Back to selected work</a>
-  <p class="section-label" style="margin-top:38px">CASE STUDY / 02</p>
-  <h1>Flight Booking<br><span>workflow boundaries.</span></h1>
-  <p class="case-lead">A flight-booking application with a React/Vite client and ASP.NET Core backend. The useful signal here is not “airline UI”; it is how authentication, persistence, checkout validation, creation, summary and payment concerns are separated.</p>
-  <div class="case-meta">
-    <div><span>Frontend</span><strong>React 19 · Vite</strong></div>
-    <div><span>Backend</span><strong>ASP.NET Core</strong></div>
-    <div><span>Persistence</span><strong>EF Core · SQLite</strong></div>
-    <div><span>Auth</span><strong>JWT Bearer</strong></div>
-  </div>
-</section>
-
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">01 / SYSTEM</p><h2>A client/API application, not a single-page mock.</h2></div>
-    <div class="case-copy">
-      <p>The backend registers controllers, CORS for the React client, Swagger/OpenAPI with Bearer authentication, an EF Core DbContext and explicit scoped services for checkout and payment workflow.</p>
-      <div class="arch-flow">
-        <div class="arch-node"><b>React 19</b><span>browser client</span></div>
-        <div class="arch-node"><b>Axios</b><span>HTTP access</span></div>
-        <div class="arch-node"><b>ASP.NET Core</b><span>controllers</span></div>
-        <div class="arch-node"><b>Services</b><span>workflow logic</span></div>
-        <div class="arch-node"><b>EF Core</b><span>ORM</span></div>
-        <div class="arch-node"><b>SQLite</b><span>project DB</span></div>
-      </div>
+<section class="case-hero-new">
+  <div class="case-bg"><img src="https://unsplash.com/photos/94S3950ulVE/download?force=true&w=2000" alt="Airplane above mountain clouds"></div>
+  <div class="case-hero-copy">
+    <span>CASE STUDY / 02 · FLIGHT BOOKING</span>
+    <h1>WORKFLOW<br>BOUNDARIES.</h1>
+    <p>React/Vite client with an ASP.NET Core API. The engineering signal is not an airline-themed screen; it is explicit authentication, persistence and checkout/payment responsibilities that can be inspected separately.</p>
+    <div class="case-hero-meta">
+      <div><small>FRONTEND</small><b>React 19 · Vite</b></div>
+      <div><small>BACKEND</small><b>ASP.NET Core</b></div>
+      <div><small>PERSISTENCE</small><b>EF Core · SQLite</b></div>
+      <div><small>AUTH</small><b>JWT Bearer</b></div>
     </div>
   </div>
 </section>
 
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">02 / SERVICE BOUNDARIES</p><h2>Checkout is split into responsibilities.</h2></div>
-    <div class="case-copy">
-      <p>The current backend exposes separate services rather than pushing the full workflow into one controller:</p>
-      <div class="case-cards">
-        <article class="case-card"><span class="tag">VALIDATION</span><h3>CheckoutValidationService</h3><p>Owns precondition checks before creating checkout state.</p></article>
-        <article class="case-card"><span class="tag">CREATION</span><h3>CheckoutCreationService</h3><p>Separates creation behavior from HTTP request plumbing.</p></article>
-        <article class="case-card"><span class="tag">SUMMARY</span><h3>CheckoutSummaryService</h3><p>Provides a dedicated boundary for checkout summary behavior.</p></article>
-        <article class="case-card"><span class="tag">FINALIZATION</span><h3>PaymentFinalizationService</h3><p>Payment finalization is isolated from the controller surface.</p></article>
+<section class="case-section-new">
+  <div class="case-two-col">
+    <div><span>01 / SYSTEM</span><h2>A CLIENT / API APPLICATION, NOT A STATIC MOCK.</h2></div>
+    <div class="case-body">
+      <p>The backend registers controllers, React CORS origins, Swagger/OpenAPI with Bearer authentication, an EF Core DbContext and explicit scoped services for checkout and payment workflow.</p>
+      <div class="case-code">React 19 / Vite
+→ Axios
+→ ASP.NET Core controllers
+→ checkout + payment services
+→ Entity Framework Core
+→ SQLite</div>
+    </div>
+  </div>
+  <div class="case-media-wide">
+    <img src="https://raw.githubusercontent.com/vinh17491/web_maybay/main/flight-booking-frontend/src/assets/booking/aircraft-seatmap-v3.png" alt="Aircraft seat-map asset from the Flight Booking project repository">
+  </div>
+  <p style="font-size:10px;opacity:.62;margin-top:10px;text-transform:uppercase">Actual project asset from the seat-selection interface repository.</p>
+</section>
+
+<section class="case-section-new dark">
+  <div class="case-two-col">
+    <div><span>02 / SERVICE BOUNDARIES</span><h2>CHECKOUT DOES NOT HAVE TO LIVE INSIDE ONE GIANT CONTROLLER.</h2></div>
+    <div class="case-body">
+      <div class="case-cards-new">
+        <article><span>VALIDATION</span><h3>CheckoutValidationService</h3><p>Owns precondition checks before creation and keeps them out of HTTP plumbing.</p></article>
+        <article><span>CREATION</span><h3>CheckoutCreationService</h3><p>Separates persistence and booking creation behavior from the controller surface.</p></article>
+        <article><span>SUMMARY</span><h3>CheckoutSummaryService</h3><p>Provides a dedicated boundary for assembling checkout summary state.</p></article>
+        <article><span>FINALIZATION</span><h3>PaymentFinalizationService</h3><p>Payment finalization is isolated rather than mixed into unrelated request handling.</p></article>
       </div>
-      <p>There is also a BookingPaymentClosureService and a PaymentSimulationService, making the project’s payment boundary explicit.</p>
+      <p>The project also contains BookingPaymentClosureService and PaymentSimulationService, which makes the current payment boundary explicit.</p>
     </div>
   </div>
 </section>
 
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">03 / AUTH</p><h2>Authenticated API surface with explicit validation.</h2></div>
-    <div class="case-copy">
-      <div class="code-block">JWT Bearer
+<section class="case-section-new">
+  <div class="case-two-col">
+    <div><span>03 / AUTH</span><h2>JWT VALIDATION IS EXPLICIT.</h2></div>
+    <div class="case-body">
+      <div class="case-code">JWT Bearer
 → validate issuer
 → validate audience
 → validate lifetime
 → validate signing key
 → ASP.NET Core authorization
 
-Swagger/OpenAPI
+Swagger / OpenAPI
 → Bearer security definition
 → authenticated endpoint testing</div>
-      <p>The JWT key is required from configuration and the source explicitly recommends user-secrets instead of hard-coding it in Program.cs.</p>
+      <p>The JWT key is required from configuration and the source explicitly points toward user-secrets rather than hard-coding the credential in Program.cs.</p>
     </div>
   </div>
 </section>
 
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">04 / DECISION QUALITY</p><h2>What this project proves — and what it does not.</h2></div>
-    <div class="case-copy">
-      <div class="case-cards">
-        <article class="case-card"><span class="tag">PROVES</span><h3>Full-stack integration</h3><p>React/Vite and ASP.NET Core are wired as separate frontend/backend surfaces with explicit CORS, API access and persistence.</p></article>
-        <article class="case-card"><span class="tag">PROVES</span><h3>Workflow decomposition</h3><p>Checkout/payment concerns are factored into services that can be reasoned about separately from controllers.</p></article>
-        <article class="case-card"><span class="tag">BOUNDARY</span><h3>Payment is not represented as a real processor</h3><p>The repository contains PaymentSimulationService. This portfolio therefore describes it as a project payment simulation, not Stripe/bank production settlement.</p></article>
-        <article class="case-card"><span class="tag">NEXT</span><h3>Concurrency deserves explicit proof</h3><p>A production seat-booking claim would require demonstrated locking/uniqueness/idempotency behavior. I do not claim that here without evidence.</p></article>
+<section class="case-section-new dark">
+  <div class="case-two-col">
+    <div><span>04 / HONEST BOUNDARY</span><h2>WHAT THIS PROJECT PROVES — AND WHAT IT DOESN'T.</h2></div>
+    <div class="case-body">
+      <div class="case-cards-new">
+        <article><span>PROVES</span><h3>Full-stack integration.</h3><p>React/Vite and ASP.NET Core are wired as distinct client/backend surfaces with CORS, authenticated API access and relational persistence.</p></article>
+        <article><span>PROVES</span><h3>Workflow decomposition.</h3><p>Checkout/payment concerns are separated into services that can be reasoned about independently.</p></article>
+        <article><span>BOUNDARY</span><h3>Payment is a project simulation.</h3><p>The repository contains PaymentSimulationService. This portfolio does not relabel that as Stripe or production bank settlement.</p></article>
+        <article><span>NEXT</span><h3>Concurrency needs proof.</h3><p>A real production seat-booking claim would require demonstrated uniqueness/locking/idempotency behavior. I do not claim that without evidence.</p></article>
+      </div>
+      <div class="case-source-list">
+        <a href="https://github.com/vinh17491/web_maybay/blob/main/FlightBookingSystem.Web/Program.cs" target="_blank" rel="noreferrer"><span>ASP.NET Core composition root</span><span>↗</span></a>
+        <a href="https://github.com/vinh17491/web_maybay/tree/main/FlightBookingSystem.Web/Services" target="_blank" rel="noreferrer"><span>Checkout / payment services</span><span>↗</span></a>
+        <a href="https://github.com/vinh17491/web_maybay/tree/main/FlightBookingSystem.Web/Controllers" target="_blank" rel="noreferrer"><span>API controllers</span><span>↗</span></a>
+        <a href="https://github.com/vinh17491/web_maybay/tree/main/flight-booking-frontend" target="_blank" rel="noreferrer"><span>React frontend</span><span>↗</span></a>
+        <a href="https://github.com/vinh17491/web_maybay" target="_blank" rel="noreferrer"><span>Repository</span><span>↗</span></a>
       </div>
     </div>
   </div>
 </section>
-
-<section class="case-section shell">
-  <p class="section-label">05 / AUDIT TRAIL</p><h2 style="margin-top:14px">Inspect the implementation.</h2>
-  <div class="source-list">
-    <a href="https://github.com/vinh17491/web_maybay/blob/main/FlightBookingSystem.Web/Program.cs" target="_blank" rel="noreferrer"><span>ASP.NET Core composition root</span><span>↗</span></a>
-    <a href="https://github.com/vinh17491/web_maybay/tree/main/FlightBookingSystem.Web/Services" target="_blank" rel="noreferrer"><span>Checkout and payment services</span><span>↗</span></a>
-    <a href="https://github.com/vinh17491/web_maybay/tree/main/FlightBookingSystem.Web/Controllers" target="_blank" rel="noreferrer"><span>API controllers</span><span>↗</span></a>
-    <a href="https://github.com/vinh17491/web_maybay/tree/main/flight-booking-frontend" target="_blank" rel="noreferrer"><span>React frontend</span><span>↗</span></a>
-    <a href="https://github.com/vinh17491/web_maybay" target="_blank" rel="noreferrer"><span>Repository</span><span>↗</span></a>
-  </div>
-</section>
 </main>
-<footer class="shell footer"><span>© <span id="year"></span> Quách Gia Vinh</span><a href="../index.html">Portfolio home</a></footer>
+<footer class="case-footer"><span>© <span id="year"></span> QUÁCH GIA VINH</span><a href="../index.html">BACK TO PORTFOLIO ↑</a></footer>
 <script src="../script.js"></script>
 </body>
 </html>
