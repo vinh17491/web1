@@ -1,116 +1,114 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Minecraft AutoCraft Case Study | Quách Gia Vinh</title>
-  <meta name="description" content="Engineering case study for an acknowledgement-bound Minecraft automation state machine built as a Meteor Client addon.">
-  <meta name="theme-color" content="#071018"><meta name="robots" content="index,follow">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Minecraft AutoCraft — Engineering Case Study | Quách Gia Vinh</title>
+  <meta name="description" content="Minecraft AutoCraft case study: acknowledgement-bound Java automation, explicit state machine, safe context boundaries and timeout recovery.">
+  <meta name="theme-color" content="#10170d"><meta name="robots" content="index,follow">
   <link rel="canonical" href="https://vinh17491.github.io/web1/projects/autocraft.html">
   <link rel="stylesheet" href="../styles.css">
 </head>
-<body>
+<body class="case-page">
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header shell">
-  <a class="brand" href="../index.html"><span class="brand-mark">QV</span><span class="brand-copy"><strong>QUÁCH GIA VINH</strong><small>Engineering case study</small></span></a>
-  <nav class="nav" aria-label="Case study navigation"><a href="../index.html#work">Work</a><a href="../resume.html">Resume</a><a href="https://github.com/vinh17491/minecraft-autocraft" target="_blank" rel="noreferrer">Source ↗</a></nav>
+<header class="play-header">
+  <a class="play-logo" href="../index.html"><b>Quách</b><em>Gia Vinh</em></a>
+  <nav class="play-nav" aria-label="Case study navigation">
+    <a href="../index.html#projects">Work</a><a href="../resume.html">Resume</a>
+    <a href="https://github.com/vinh17491/minecraft-autocraft" target="_blank" rel="noreferrer">Source ↗</a>
+  </nav>
+  <button class="play-menu" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
 </header>
-<main id="main">
-<section class="case-hero shell">
-  <a class="back-link" href="../index.html#work">← Back to selected work</a>
-  <p class="section-label" style="margin-top:38px">CASE STUDY / 03</p>
-  <h1>AutoCraft<br><span>state before speed.</span></h1>
-  <p class="case-lead">A Meteor Client addon for Minecraft Java Edition that automates maximum-batch crafting. The engineering focus is synchronization: network mutations are serialized around server acknowledgement and the module pauses when context is unsafe.</p>
-  <div class="case-meta">
-    <div><span>Language</span><strong>Java</strong></div>
-    <div><span>Platform</span><strong>Minecraft · Meteor</strong></div>
-    <div><span>Pattern</span><strong>Explicit state machine</strong></div>
-    <div><span>Failure policy</span><strong>Pause, do not guess</strong></div>
-  </div>
-</section>
 
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">01 / PROBLEM</p><h2>Fast automation becomes wrong automation when state drifts.</h2></div>
-    <div class="case-copy">
-      <p>A naïve crafting bot can spam clicks faster than server/container state is acknowledged. That creates stale assumptions: wrong cursor contents, unexpected crafting-grid contents, duplicated operations or interaction against a changed menu.</p>
-      <p>BoneFactory instead models the operation as discrete states and treats acknowledgement as a boundary that local speed settings cannot bypass.</p>
+<main id="main">
+<section class="case-hero-new">
+  <div class="case-bg"><img src="https://raw.githubusercontent.com/vinh17491/vinh17491/main/assets/minecraft-hero.svg" alt="Minecraft themed project landscape"></div>
+  <div class="case-hero-copy">
+    <span>CASE STUDY / 03 · AUTOCRAFT</span>
+    <h1>STATE<br>BEFORE SPEED.</h1>
+    <p>Meteor Client automation for maximum-batch crafting. The relevant engineering problem is synchronization: one network mutation is followed by evidence before the next operation is allowed.</p>
+    <div class="case-hero-meta">
+      <div><small>LANGUAGE</small><b>Java</b></div>
+      <div><small>PLATFORM</small><b>Minecraft · Meteor</b></div>
+      <div><small>PATTERN</small><b>Explicit state machine</b></div>
+      <div><small>FAILURE POLICY</small><b>Pause, don't guess</b></div>
     </div>
   </div>
 </section>
 
-<section class="case-section shell">
-  <p class="section-label">02 / STATE MACHINE</p><h2 style="margin-top:14px">One network mutation, then evidence.</h2>
-  <div class="code-block"><span class="accent">VALIDATE_CONTEXT</span>
+<section class="case-section-new">
+  <div class="case-two-col">
+    <div><span>01 / PROBLEM</span><h2>FAST AUTOMATION BECOMES WRONG AUTOMATION WHEN STATE DRIFTS.</h2></div>
+    <div class="case-body">
+      <p>A naïve crafting loop can issue clicks faster than server/container state is acknowledged. That creates stale assumptions: wrong cursor contents, unexpected crafting-grid contents, duplicate operations or interaction against a changed menu.</p>
+      <p>BoneFactory instead models the operation as discrete states and makes acknowledgement a boundary that local speed settings cannot bypass.</p>
+      <div class="case-code">VALIDATE_CONTEXT
 → SELECT_BATCH
 → PLACE_RECIPE
-→ <span class="warn">WAIT_RECIPE_ACK</span>
+→ WAIT_RECIPE_ACK
 → DROP_RESULT
-→ <span class="warn">WAIT_DROP_ACK</span>
+→ WAIT_DROP_ACK
 → SELECT_BATCH
 
 Side states:
 WAIT_INPUT
 PAUSED</div>
-  <div class="case-cards">
-    <article class="case-card"><span class="tag">ACK</span><h3>Recipe placement waits</h3><p>The module checks expected result/grid or input mutation plus container state advancement before moving to the result drop.</p></article>
-    <article class="case-card"><span class="tag">ACK</span><h3>Drop waits</h3><p>After whole-result drop, the next batch does not start until the result slot and crafting grid reach the expected empty state.</p></article>
-    <article class="case-card"><span class="tag">TIMEOUT</span><h3>40-tick acknowledgement timeout</h3><p>Missing acknowledgement leads to PAUSED instead of repeated blind mutation.</p></article>
-    <article class="case-card"><span class="tag">SPEED</span><h3>Local speed is bounded</h3><p>x1/x3/x5/x10 changes local transition budget only. It does not permit another network mutation while one is awaiting acknowledgement.</p></article>
+    </div>
   </div>
 </section>
 
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">03 / SAFETY INVARIANTS</p><h2>External state is not treated as mine.</h2></div>
-    <div class="case-copy">
-      <div class="case-cards">
-        <article class="case-card"><span class="tag">CURSOR</span><h3>Non-empty cursor pauses</h3><p>The addon will not move or drop an item already held by the user or another interaction.</p></article>
-        <article class="case-card"><span class="tag">GRID</span><h3>Unexpected contents pause</h3><p>A non-empty result/grid outside the owned transaction is treated as unsafe rather than overwritten.</p></article>
-        <article class="case-card"><span class="tag">CONTAINER</span><h3>Menu identity is tracked</h3><p>A changed container triggers initialization instead of continuing with stale assumptions.</p></article>
-        <article class="case-card"><span class="tag">WORLD</span><h3>World/session change resets runtime</h3><p>Join/leave/world-change events clear transaction state before automation continues.</p></article>
+<section class="case-section-new dark">
+  <div class="case-two-col">
+    <div><span>02 / ACK BOUNDARY</span><h2>ONE NETWORK MUTATION. THEN EVIDENCE.</h2></div>
+    <div class="case-body">
+      <div class="case-cards-new">
+        <article><span>PLACE</span><h3>Recipe placement waits.</h3><p>The module checks expected result/grid or input mutation plus container advancement before moving to the drop state.</p></article>
+        <article><span>DROP</span><h3>Whole-result drop waits.</h3><p>The next batch does not begin until result slot and crafting grid reach the expected empty state.</p></article>
+        <article><span>TIMEOUT</span><h3>40 ticks, then pause.</h3><p>Missing acknowledgement leads to PAUSED instead of blindly replaying the same network mutation.</p></article>
+        <article><span>SPEED</span><h3>Local speed remains bounded.</h3><p>x1/x3/x5/x10 affects local transitions only. It does not permit a second network mutation while one is unacknowledged.</p></article>
       </div>
     </div>
   </div>
 </section>
 
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">04 / THROUGHPUT</p><h2>Use native maximum operations instead of per-result loops.</h2></div>
-    <div class="case-copy">
-      <p>CraftingService plans the maximum craftable batch from inventory/grid input, uses Minecraft’s native max-recipe placement and performs one native whole-result THROW operation on the result slot.</p>
-      <div class="code-block"><span class="good">USE_MAX_ITEMS = true</span>
+<section class="case-section-new">
+  <div class="case-two-col">
+    <div><span>03 / SAFETY</span><h2>EXTERNAL STATE IS NOT TREATED AS MINE.</h2></div>
+    <div class="case-body">
+      <div class="case-cards-new">
+        <article><span>CURSOR</span><h3>Non-empty cursor pauses.</h3><p>The addon will not move or drop an item already held by the user or another interaction.</p></article>
+        <article><span>GRID</span><h3>Unexpected contents pause.</h3><p>Unowned crafting contents are treated as unsafe rather than overwritten.</p></article>
+        <article><span>CONTAINER</span><h3>Menu identity is tracked.</h3><p>A changed container triggers initialization rather than continuing with stale assumptions.</p></article>
+        <article><span>WORLD</span><h3>Session change resets state.</h3><p>Join, leave and world changes clear runtime transaction state before automation proceeds.</p></article>
+      </div>
+    </div>
+  </div>
+  <div class="case-media-wide"><img src="../assets/editorial/the-end.webp" alt="Pixel-style motivational quote on a Minecraft-like background"></div>
+</section>
+
+<section class="case-section-new dark">
+  <div class="case-two-col">
+    <div><span>04 / THROUGHPUT</span><h2>NATIVE MAXIMUM OPERATIONS, NOT PER-RESULT SPAM.</h2></div>
+    <div class="case-body">
+      <p>CraftingService plans the maximum craftable batch, uses Minecraft's native maximum recipe placement and performs one native whole-result THROW against the result slot.</p>
+      <div class="case-code">USE_MAX_ITEMS = true
 placeRecipeMax(...)
 → wait for server/menu acknowledgement
 
-<span class="good">WHOLE_RESULT_DROP_INPUT = THROW</span>
+WHOLE_RESULT_DROP_INPUT = THROW
 dropWholeResult(...)
 → wait for server/menu acknowledgement</div>
-      <p>This reduces cursor deposits, inventory-destination logic and per-result click loops while keeping the synchronization boundary explicit.</p>
+      <p>This avoids inventing cursor-deposit logic and per-result click loops while keeping synchronization explicit.</p>
+      <div class="case-source-list">
+        <a href="https://github.com/vinh17491/minecraft-autocraft/blob/main/src/main/java/com/vinh17491/minecraftautocraft/modules/BoneFactory.java" target="_blank" rel="noreferrer"><span>BoneFactory state machine</span><span>↗</span></a>
+        <a href="https://github.com/vinh17491/minecraft-autocraft/blob/main/src/main/java/com/vinh17491/minecraftautocraft/services/CraftingService.java" target="_blank" rel="noreferrer"><span>CraftingService native operations</span><span>↗</span></a>
+        <a href="https://github.com/vinh17491/minecraft-autocraft/blob/main/README.md" target="_blank" rel="noreferrer"><span>Behavior / safety documentation</span><span>↗</span></a>
+        <a href="https://github.com/vinh17491/minecraft-autocraft" target="_blank" rel="noreferrer"><span>Repository</span><span>↗</span></a>
+      </div>
     </div>
-  </div>
-</section>
-
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">05 / ENGINEERING SIGNAL</p><h2>Why this belongs in a software portfolio.</h2></div>
-    <div class="case-copy">
-      <p>The domain happens to be a game client, but the relevant engineering concerns are general: state machines, remote acknowledgement, stale state, invariants, timeouts, bounded throughput and safe recovery.</p>
-      <div class="limitations"><h3>Boundary</h3><p>This is client automation, not a distributed-systems benchmark. The case study claims the synchronization behavior visible in source and no more.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="case-section shell">
-  <p class="section-label">06 / AUDIT TRAIL</p><h2 style="margin-top:14px">Read the state machine.</h2>
-  <div class="source-list">
-    <a href="https://github.com/vinh17491/minecraft-autocraft/blob/main/src/main/java/com/vinh17491/minecraftautocraft/modules/BoneFactory.java" target="_blank" rel="noreferrer"><span>BoneFactory state machine</span><span>↗</span></a>
-    <a href="https://github.com/vinh17491/minecraft-autocraft/blob/main/src/main/java/com/vinh17491/minecraftautocraft/services/CraftingService.java" target="_blank" rel="noreferrer"><span>CraftingService native operations</span><span>↗</span></a>
-    <a href="https://github.com/vinh17491/minecraft-autocraft/blob/main/README.md" target="_blank" rel="noreferrer"><span>Behavior and safety documentation</span><span>↗</span></a>
-    <a href="https://github.com/vinh17491/minecraft-autocraft" target="_blank" rel="noreferrer"><span>Repository</span><span>↗</span></a>
   </div>
 </section>
 </main>
-<footer class="shell footer"><span>© <span id="year"></span> Quách Gia Vinh</span><a href="../index.html">Portfolio home</a></footer>
+<footer class="case-footer"><span>© <span id="year"></span> QUÁCH GIA VINH</span><a href="../index.html">BACK TO PORTFOLIO ↑</a></footer>
 <script src="../script.js"></script>
 </body>
 </html>
