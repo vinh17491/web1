@@ -103,9 +103,6 @@
         if (rect.bottom < 0 || rect.top > vh) return;
         const p = (rect.top + rect.height / 2 - vh / 2) / (vh + rect.height);
         img.style.setProperty('--gp-parallax', `${p * -24}px`);
-        if (!img.closest('.gp-project:hover')) {
-          img.style.transform = `translate3d(0,${p * -24}px,0) scale(1.08)`;
-        }
       });
       rafPending = false;
     };
