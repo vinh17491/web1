@@ -1,133 +1,166 @@
 (() => {
-  const body = document.body;
-  if (!body.classList.contains('editorial-home')) return;
+  if (!document.body.classList.contains('portfolio-home')) return;
 
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const coarse = window.matchMedia('(pointer: coarse)').matches;
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const coarse = matchMedia('(pointer: coarse)').matches;
 
-  // Loader: short enough for recruiters, long enough to create a deliberate first frame.
-  const loader = document.querySelector('.gp-loader');
-  const closeLoader = () => {
-    window.setTimeout(() => loader?.classList.add('is-done'), reduceMotion ? 0 : 850);
-  };
-  if (document.readyState === 'complete') closeLoader();
-  else window.addEventListener('load', closeLoader, { once: true });
-  window.setTimeout(closeLoader, 1800);
-
-  // Mobile navigation.
-  const menuButton = document.querySelector('.gp-menu');
-  const nav = document.querySelector('.gp-nav');
-  menuButton?.addEventListener('click', () => {
-    const open = nav?.classList.toggle('is-open') ?? false;
-    menuButton.setAttribute('aria-expanded', String(open));
+  const menu = document.querySelector('.play-menu');
+  const nav = document.querySelector('.play-nav');
+  menu?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open') ?? false;
+    menu.setAttribute('aria-expanded', String(open));
   });
-  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-    nav.classList.remove('is-open');
-    menuButton?.setAttribute('aria-expanded', 'false');
+  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    menu?.setAttribute('aria-expanded', 'false');
   }));
 
-  // Cursor vocabulary communicates what an interaction does.
-  if (!coarse && !reduceMotion) {
-    const cursor = document.querySelector('.gp-cursor');
-    const label = cursor?.querySelector('.gp-cursor-label');
-    let tx = innerWidth / 2;
-    let ty = innerHeight / 2;
-    let x = tx;
-    let y = ty;
-    let hovering = false;
+  const year = document.getElementById('year');
+  if (year) year.textContent = new Date().getFullYear();
 
-    window.addEventListener('pointermove', (event) => {
-      tx = event.clientX;
-      ty = event.clientY;
+  // Custom cursor on precise pointers.
+  if (!coarse && !reduceMotion) {
+    const cursor = document.querySelector('.site-cursor');
+    const label = cursor?.querySelector('span');
+    let tx = innerWidth / 2, ty = innerHeight / 2, x = tx, y = ty;
+    let active = false;
+
+    addEventListener('pointermove', e => {
+      tx = e.clientX; ty = e.clientY;
     }, { passive: true });
 
-    document.querySelectorAll('[data-cursor], .gp-project, a').forEach((el) => {
+    document.querySelectorAll('[data-cursor], a').forEach(el => {
       el.addEventListener('pointerenter', () => {
-        hovering = true;
-        cursor?.classList.add('is-active');
-        if (label) label.textContent = el.dataset.cursor || (el.classList.contains('gp-project') ? 'VIEW' : 'OPEN');
+        active = true;
+        cursor?.classList.add('active');
+        if (label) label.textContent = el.dataset.cursor || 'OPEN';
       });
       el.addEventListener('pointerleave', () => {
-        hovering = false;
-        cursor?.classList.remove('is-active');
+        active = false;
+        cursor?.classList.remove('active');
       });
     });
 
-    const tickCursor = () => {
-      x += (tx - x) * 0.17;
-      y += (ty - y) * 0.17;
-      if (cursor) {
-        cursor.style.setProperty('--cursor-x', x + 'px');
-        cursor.style.setProperty('--cursor-y', y + 'px');
-        if (hovering) {
-          cursor.style.transform = `translate3d(${x}px,${y}px,0) scale(1)`;
-        } else {
-          cursor.style.transform = `translate3d(${x}px,${y}px,0) scale(.16)`;
-        }
-      }
-      requestAnimationFrame(tickCursor);
+    const drawCursor = () => {
+      x += (tx - x) * .18;
+      y += (ty - y) * .18;
+      cursor?.style.setProperty('--cx', x + 'px');
+      cursor?.style.setProperty('--cy', y + 'px');
+      cursor && (cursor.style.transform = `translate3d(${x}px,${y}px,0) scale(${active ? 1 : .13})`);
+      requestAnimationFrame(drawCursor);
     };
-    tickCursor();
+    drawCursor();
   }
 
-  // Editorial reveal system.
-  const revealTargets = [
-    ...document.querySelectorAll('.gp-manifesto-copy, .gp-manifesto-note, .gp-work-head > *, .gp-project, .gp-story-head > *, .gp-story-copy article, .gp-capabilities-head > *, .gp-capability-list article, .gp-proof-copy > *, .gp-profile-info > *, .gp-contact > *')
-  ];
-  revealTargets.forEach((el) => el.classList.add('gp-reveal'));
+  // Floating project cluster: each card reacts according to its depth.
+  const orbit = document.querySelector('.project-orbit');
+  const cards = [...document.querySelectorAll('[data-project-card]')];
+  if (orbit && cards.length && !reduceMotion) {
+    let mx = 0, my = 0, sx = 0, sy = 0;
 
-  document.querySelectorAll('.gp-project-media, .gp-story-media, .gp-proof-photo').forEach((el) => el.classList.add('gp-clip'));
+    orbit.addEventListener('pointermove', e => {
+      const r = orbit.getBoundingClientRect();
+      mx = (e.clientX - r.left) / r.width - .5;
+      my = (e.clientY - r.top) / r.height - .5;
+    }, { passive: true });
+    orbit.addEventListener('pointerleave', () => { mx = 0; my = 0; });
+
+    const animateOrbit = () => {
+      sx += (mx - sx) * .045;
+      sy += (my - sy) * .045;
+      cards.forEach((card, i) => {
+        const depth = Number(card.dataset.depth || 1);
+        const x = sx * 34 * depth;
+        const y = sy * 24 * depth;
+        const rx = sy * -5 * depth;
+        const ry = sx * 7 * depth;
+        const base = card.classList.contains('orbit-gym') ? 'rotateZ(-5deg)' :
+                     card.classList.contains('orbit-flight') ? 'rotateZ(5deg)' : 'rotateZ(11deg)';
+        const z = card.classList.contains('orbit-flight') ? 230 : card.classList.contains('orbit-gym') ? 140 : 70;
+        card.style.transform = `translate3d(${x}px,${y}px,${z}px) rotateX(${rx}deg) rotateY(${ry}deg) ${base}`;
+      });
+      requestAnimationFrame(animateOrbit);
+    };
+    animateOrbit();
+
+    addEventListener('scroll', () => {
+      const p = Math.min(1, scrollY / innerHeight);
+      orbit.style.transform = `translate3d(0,${p * -28}px,0) scale(${1 - p * .025})`;
+    }, { passive:true });
+  }
+
+  // Gallery-Play-like expanding cards. Hover on desktop, tap on mobile.
+  const impressiveCards = [...document.querySelectorAll('[data-impressive-card]')];
+  impressiveCards.forEach(card => {
+    card.addEventListener('click', e => {
+      if (!coarse) return;
+      if (!card.classList.contains('is-active')) {
+        e.preventDefault();
+        impressiveCards.forEach(c => c.classList.remove('is-active'));
+        card.classList.add('is-active');
+      }
+    });
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        impressiveCards.forEach(c => c.classList.toggle('is-active', c === card && !c.classList.contains('is-active')));
+      }
+    });
+  });
+
+  // Reveal choreography.
+  const revealSelectors = [
+    '.intro-section > *',
+    '.impressive-intro > *',
+    '.impressive-card',
+    '.work-heading > *',
+    '.work-feature',
+    '.about-head > *',
+    '.about-copy article',
+    '.range-head > *',
+    '.range-list article',
+    '.proof-copy > *',
+    '.identity-info > *',
+    '.contact-section > *'
+  ];
+  const revealEls = revealSelectors.flatMap(s => [...document.querySelectorAll(s)]);
+  revealEls.forEach(el => el.classList.add('reveal-up'));
+  document.querySelectorAll('.work-media,.about-media,.proof-section>img').forEach(el => el.classList.add('media-clip'));
 
   if (reduceMotion || !('IntersectionObserver' in window)) {
-    document.querySelectorAll('.gp-reveal,.gp-clip').forEach((el) => el.classList.add('is-visible'));
+    document.querySelectorAll('.reveal-up,.media-clip').forEach(el => el.classList.add('visible'));
   } else {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -4% 0px' });
-    document.querySelectorAll('.gp-reveal,.gp-clip').forEach((el) => observer.observe(el));
+    }, { threshold:.12, rootMargin:'0px 0px -5% 0px' });
+    document.querySelectorAll('.reveal-up,.media-clip').forEach(el => io.observe(el));
   }
 
-  // Slight image movement makes the page feel filmed rather than card-based.
-  if (!reduceMotion) {
-    const media = [...document.querySelectorAll('.gp-project-media img, .gp-proof-photo img')];
-    let rafPending = false;
+  // Internal page transition.
+  const wipe = document.querySelector('.page-wipe');
+  document.querySelectorAll('a[href]').forEach(a => {
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('http')) return;
+    a.addEventListener('click', e => {
+      if (reduceMotion || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      wipe?.classList.add('is-leaving');
+      setTimeout(() => location.href = href, 470);
+    });
+  });
 
-    const updateParallax = () => {
-      const vh = innerHeight;
-      media.forEach((img) => {
-        const rect = img.parentElement.getBoundingClientRect();
-        if (rect.bottom < 0 || rect.top > vh) return;
-        const p = (rect.top + rect.height / 2 - vh / 2) / (vh + rect.height);
-        img.style.setProperty('--gp-parallax', `${p * -24}px`);
-      });
-      rafPending = false;
-    };
-
-    window.addEventListener('scroll', () => {
-      if (!rafPending) {
-        rafPending = true;
-        requestAnimationFrame(updateParallax);
-      }
-    }, { passive: true });
-    window.addEventListener('resize', updateParallax, { passive: true });
-    updateParallax();
-  }
-
-  // If a remote stock video cannot load, keep the poster instead of showing a broken block.
-  document.querySelectorAll('video').forEach((video) => {
+  // Remote video fallbacks keep imagery intact if the video CDN fails.
+  document.querySelectorAll('video').forEach(video => {
     video.addEventListener('error', () => {
-      video.pause();
-      video.style.opacity = '0';
-      const container = video.parentElement;
       const poster = video.getAttribute('poster');
-      if (poster && container) {
-        container.style.backgroundImage = `url("${poster}")`;
-        container.style.backgroundSize = 'cover';
-        container.style.backgroundPosition = 'center';
+      const parent = video.parentElement;
+      if (poster && parent) {
+        video.style.display = 'none';
+        parent.style.background = `center / cover no-repeat url("${poster}")`;
       }
     });
   });
