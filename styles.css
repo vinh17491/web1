@@ -1000,3 +1000,13 @@ h3 { margin:0; letter-spacing:-.025em; }
   .gp-reveal { opacity:1;transform:none; }
   .gp-clip { clip-path:none; }
 }
+
+
+/* Parallax-safe media transforms */
+.editorial-home .gp-project-media img,
+.editorial-home .gp-proof-photo img {
+  transform:translate3d(0,var(--gp-parallax,0),0) scale(1.08);
+}
+.editorial-home .gp-project:hover .gp-project-media img {
+  transform:translate3d(0,var(--gp-parallax,0),0) scale(1.135);
+}
