@@ -65,23 +65,30 @@
     }, { passive: true });
     orbit.addEventListener('pointerleave', () => { mx = 0; my = 0; });
 
-    const animateOrbit = () => {
+    const started = performance.now();
+    const animateOrbit = (now = performance.now()) => {
       sx += (mx - sx) * .045;
       sy += (my - sy) * .045;
+      const t = (now - started) * .001;
       cards.forEach((card, i) => {
         const depth = Number(card.dataset.depth || 1);
-        const x = sx * 34 * depth;
-        const y = sy * 24 * depth;
-        const rx = sy * -5 * depth;
-        const ry = sx * 7 * depth;
-        const base = card.classList.contains('orbit-gym') ? 'rotateZ(-5deg)' :
-                     card.classList.contains('orbit-flight') ? 'rotateZ(5deg)' : 'rotateZ(11deg)';
-        const z = card.classList.contains('orbit-flight') ? 230 : card.classList.contains('orbit-gym') ? 140 : 70;
-        card.style.transform = `translate3d(${x}px,${y}px,${z}px) rotateX(${rx}deg) rotateY(${ry}deg) ${base}`;
+        const phase = i * 2.17;
+        const driftX = Math.sin(t * .55 + phase) * 7 * depth;
+        const driftY = Math.cos(t * .68 + phase) * 9 * depth;
+        const x = sx * 34 * depth + driftX;
+        const y = sy * 24 * depth + driftY;
+        const rx = sy * -5 * depth + Math.sin(t * .43 + phase) * 2.4;
+        const ry = sx * 7 * depth + Math.cos(t * .51 + phase) * 3.2;
+        const baseZ = card.classList.contains('orbit-gym') ? -5 :
+                      card.classList.contains('orbit-flight') ? 5 : 7;
+        const rz = baseZ + Math.sin(t * .38 + phase) * 1.8;
+        const baseDepth = card.classList.contains('orbit-flight') ? 230 : card.classList.contains('orbit-gym') ? 140 : 95;
+        const z = baseDepth + Math.sin(t * .46 + phase) * 20;
+        card.style.transform = `translate3d(${x}px,${y}px,${z}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg)`;
       });
       requestAnimationFrame(animateOrbit);
     };
-    animateOrbit();
+    requestAnimationFrame(animateOrbit);
 
     addEventListener('scroll', () => {
       const p = Math.min(1, scrollY / innerHeight);
