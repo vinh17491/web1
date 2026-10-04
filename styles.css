@@ -166,3 +166,94 @@ button{font:inherit}
 }
 @media print{.resume-page{background:white}.resume-toolbar{display:none}.resume-wrap{width:100%;margin:0;box-shadow:none}.resume-sheet{padding:0}.resume-section{break-inside:avoid}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}.reveal-up{opacity:1;transform:none}.media-clip{clip-path:none}}
+
+
+/* ===== Final media + interaction polish ===== */
+.hero-nature-video{
+  position:absolute;inset:0;z-index:0;overflow:hidden;background:#101510;
+}
+.hero-nature-video video{
+  width:100%;height:100%;object-fit:cover;
+  filter:saturate(.72) contrast(1.06) brightness(.62);
+  transform:scale(1.04);
+}
+.floating-hero::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(10,12,9,.42),rgba(12,14,11,.12) 36%,rgba(14,14,13,.66)),
+    radial-gradient(circle at 50% 42%,transparent 0 28%,rgba(8,9,8,.38) 84%);
+}
+.floating-hero .contour-map{z-index:2;mix-blend-mode:screen;opacity:.12}
+.floating-hero .hero-heat{z-index:2;opacity:.2}
+.floating-hero .hero-word{z-index:3;text-shadow:0 8px 38px rgba(0,0,0,.22)}
+.floating-hero .project-orbit{z-index:5}
+.orbit-card{border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(2px)}
+.orbit-gym img{object-position:50% 34%}
+.orbit-flight img{object-position:center}
+.orbit-minecraft{
+  left:68%;top:15%;width:min(27vw,430px);height:min(20vw,300px);
+}
+.orbit-minecraft img{object-position:center}
+
+.impressive-cards{
+  display:flex!important;gap:7px!important;align-items:stretch;overflow:hidden;
+}
+.impressive-card{
+  position:relative;flex:1 1 0;min-width:0;overflow:hidden;border-radius:18px;
+  isolation:isolate;transition:flex .72s cubic-bezier(.76,0,.24,1),transform .72s cubic-bezier(.22,1,.36,1);
+}
+.impressive-card img{
+  position:absolute;inset:-3%;width:106%;height:106%;object-fit:cover;
+  filter:blur(13px) saturate(.58) brightness(.63);
+  transform:scale(1.08);
+  transition:filter .7s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1);
+}
+.impressive-card::after{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.06),rgba(0,0,0,.16) 45%,rgba(0,0,0,.74));
+  transition:background .6s ease;
+}
+.impressive-card>h2{
+  position:absolute;inset:0;z-index:3;display:grid;place-items:center;
+  margin:0!important;padding:28px;text-align:center;color:#fff;
+  font-size:clamp(24px,2.2vw,40px)!important;line-height:.95!important;
+  transition:opacity .35s ease,transform .55s cubic-bezier(.22,1,.36,1);
+}
+.impressive-content{
+  position:absolute;left:22px;right:22px;bottom:20px;z-index:3;color:#fff;
+  opacity:0;transform:translateY(22px);
+  transition:opacity .35s ease .13s,transform .62s cubic-bezier(.22,1,.36,1) .08s;
+}
+.impressive-content>span{font-size:9px;font-weight:900;letter-spacing:.08em}
+.impressive-content p{max-width:760px;font-size:13px;line-height:1.42;margin:10px 0}
+.impressive-content ul{margin:10px 0 0;padding-left:18px;font-size:11px;line-height:1.55}
+.impressive-card:hover,
+.impressive-card:focus-visible,
+.impressive-card.is-active{flex:2.15 1 0;outline:none}
+.impressive-card:hover img,
+.impressive-card:focus-visible img,
+.impressive-card.is-active img{filter:blur(0) saturate(.92) brightness(.82);transform:scale(1.01)}
+.impressive-card:hover>h2,
+.impressive-card:focus-visible>h2,
+.impressive-card.is-active>h2{opacity:0;transform:translateY(-16px)}
+.impressive-card:hover .impressive-content,
+.impressive-card:focus-visible .impressive-content,
+.impressive-card.is-active .impressive-content{opacity:1;transform:none}
+.impressive-cards:has(.impressive-card:hover) .impressive-card:not(:hover){flex:.78 1 0}
+.impressive-cards:has(.impressive-card:focus-visible) .impressive-card:not(:focus-visible){flex:.78 1 0}
+
+.work-media img,.about-media video,.proof-section>img{
+  transition:transform 1.1s cubic-bezier(.22,1,.36,1),filter .6s ease;
+}
+.work-feature:hover .work-media img{transform:scale(1.045);filter:saturate(1.06)}
+.about-media video{filter:saturate(.78) contrast(1.03)}
+.proof-section>img{filter:saturate(.76) contrast(1.04)}
+
+@media(max-width:720px){
+  .hero-nature-video video{filter:saturate(.72) contrast(1.04) brightness(.55)}
+  .orbit-minecraft{left:53%;top:27%;width:43vw;height:30vw}
+  .impressive-cards{display:grid!important;grid-template-columns:1fr!important;gap:8px!important}
+  .impressive-card{height:58svh!important;min-height:410px;flex:none!important}
+  .impressive-card img{filter:blur(9px) saturate(.62) brightness(.62)}
+  .impressive-card.is-active img{filter:blur(0) saturate(.9) brightness(.8)}
+}
