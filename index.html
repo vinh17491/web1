@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Quách Gia Vinh | Software Engineer</title>
-  <meta name="description" content="Quách Gia Vinh is a software engineering student and backend-focused developer building full-stack systems, authenticated APIs, data workflows, testable software, and automation.">
-  <meta name="theme-color" content="#071018">
+  <meta name="description" content="Interactive engineering portfolio of Quách Gia Vinh — backend-focused software engineer building full-stack systems, authenticated APIs, testable workflows and automation.">
+  <meta name="theme-color" content="#07140e">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://vinh17491.github.io/web1/">
   <link rel="stylesheet" href="styles.css">
@@ -25,227 +25,210 @@
   }
   </script>
 </head>
-<body>
+<body class="cinematic-home">
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header shell">
-    <a class="brand" href="#top" aria-label="Quách Gia Vinh home">
+
+  <div class="nature-stage" aria-hidden="true">
+    <div class="sky-haze"></div>
+    <div class="sun-glow"></div>
+    <canvas id="nature-canvas"></canvas>
+    <div class="scene-vignette"></div>
+    <div class="grain"></div>
+  </div>
+
+  <div class="cursor-orbit" aria-hidden="true">
+    <span class="cursor-core"></span>
+    <span class="cursor-text">VIEW</span>
+  </div>
+
+  <div class="story-rail" aria-hidden="true">
+    <div class="story-track"><span id="story-progress"></span></div>
+    <span class="story-index" id="story-index">01</span>
+  </div>
+
+  <header class="site-header shell cinematic-nav">
+    <a class="brand" href="#top" aria-label="Quách Gia Vinh home" data-cursor="HOME">
       <span class="brand-mark">QV</span>
-      <span class="brand-copy"><strong>QUÁCH GIA VINH</strong><small>@vinh17491 · ZinZin</small></span>
+      <span class="brand-copy"><strong>QUÁCH GIA VINH</strong><small>SOFTWARE ENGINEER · ZINZIN</small></span>
     </a>
     <button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav">MENU</button>
     <nav class="nav" id="primary-nav" aria-label="Primary navigation">
-      <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
-      <a href="#skills">Skills</a>
-      <a href="#about">About</a>
-      <a class="nav-cta" href="resume.html">Resume</a>
+      <a href="#work" data-cursor="WORK">Work</a>
+      <a href="#experience" data-cursor="STORY">Experience</a>
+      <a href="#about" data-cursor="ABOUT">About</a>
+      <a href="resume.html" class="nav-cta" data-cursor="OPEN">Resume</a>
     </nav>
   </header>
 
   <main id="main">
-    <section class="hero shell" id="top">
-      <div class="hero-copy reveal">
-        <p class="eyebrow"><span class="status-dot"></span> SOFTWARE ENGINEER · BACKEND / FULL-STACK</p>
-        <h1>Build the system.<br><span>Prove it works.</span></h1>
-        <p class="hero-lead">
-          I design and implement software across API, database, authentication, frontend integration, testing and debugging.
-          My strongest work is documented as engineering evidence: architecture, constraints, failure handling and verified behavior.
+    <section class="story-chapter story-intro shell" id="top" data-scene="0">
+      <div class="intro-copy">
+        <p class="eyebrow cinematic-reveal"><span class="status-dot"></span> ENGINEERING, WITH A PULSE</p>
+        <h1 class="cinematic-title cinematic-reveal">Build systems.<br><span>Leave evidence.</span></h1>
+        <p class="hero-lead cinematic-reveal">
+          I am Quách Gia Vinh — a backend-focused software engineer working across APIs, data,
+          authentication, frontend integration, testing and debugging.
         </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#work">Review engineering work <span aria-hidden="true">↘</span></a>
-          <a class="button ghost" href="resume.html">Read resume</a>
-          <a class="button ghost" href="https://github.com/vinh17491" target="_blank" rel="noreferrer">GitHub ↗</a>
+        <div class="hero-actions cinematic-reveal">
+          <a class="button nature-primary magnetic" href="#work" data-cursor="EXPLORE">Explore the work <span>↓</span></a>
+          <a class="button glass magnetic" href="resume.html" data-cursor="OPEN">Resume</a>
+          <a class="button glass magnetic" href="https://github.com/vinh17491" target="_blank" rel="noreferrer" data-cursor="OPEN">GitHub ↗</a>
         </div>
-        <dl class="hero-facts" aria-label="Profile summary">
-          <div><dt>Primary focus</dt><dd>Backend systems</dd></div>
-          <div><dt>Secondary</dt><dd>Full-stack delivery</dd></div>
-          <div><dt>Quality</dt><dd>Testing · Debugging</dd></div>
-          <div><dt>Education</dt><dd>Software Engineering</dd></div>
-        </dl>
       </div>
 
-      <aside class="proof-console reveal" aria-label="Current engineering signal">
-        <div class="console-head"><span></span><span></span><span></span><small>evidence.log</small></div>
-        <div class="console-body">
-          <div class="console-line"><span class="ok">PASS</span><span>GymFit auth/RBAC acceptance</span></div>
-          <div class="console-line"><span class="metric">163</span><span>authorization assertions</span></div>
-          <div class="console-line"><span class="metric">20</span><span>API route groups covered</span></div>
-          <div class="console-line"><span class="ok">PASS</span><span>customer/admin commerce flows</span></div>
-          <div class="console-line"><span class="ok">SAFE</span><span>ACK-bound AutoCraft mutations</span></div>
-          <div class="console-divider"></div>
-          <p>Claims above are linked to source code or project documentation. No invented production metrics.</p>
-        </div>
-      </aside>
+      <div class="intro-signature cinematic-reveal">
+        <span>SCROLL TO ENTER</span>
+        <i></i>
+        <small>01 / 07</small>
+      </div>
     </section>
 
-    <section class="section shell" id="work">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">01 / ENGINEERING WORK</p>
-          <h2>Projects reviewed like systems, not screenshots.</h2>
+    <section class="story-chapter shell chapter-thesis" data-scene="1">
+      <div class="chapter-panel chapter-left glass-panel">
+        <p class="section-label">01 / ENGINEERING THESIS</p>
+        <h2>Pretty UI is not the finish line.</h2>
+        <p class="chapter-lead">
+          The system still has to survive bad input, stale state, wrong permissions, retries,
+          concurrent users and the boring failures nobody puts in a hero screenshot.
+        </p>
+        <div class="signal-row">
+          <span>API boundaries</span><span>State transitions</span><span>Ownership</span><span>Regression</span>
         </div>
-        <p class="section-note">Each case study exposes architecture, decisions, verification and limitations.</p>
       </div>
+      <div class="floating-quote" aria-hidden="true">“Make the failure path reviewable.”</div>
+    </section>
 
-      <article class="project-card project-hero reveal">
-        <div class="project-kicker"><span>FEATURED</span><span>FULL-STACK · SECURITY · COMMERCE</span></div>
-        <div class="project-grid">
-          <div>
-            <h3>GymFit</h3>
-            <p class="project-summary">
-              A role-based gym management and commerce platform with Member, Coach and Admin surfaces, protected APIs,
-              variant-level inventory, checkout, orders, payment state, booking flows and technical acceptance documentation.
-            </p>
-            <div class="chips">
-              <span>React</span><span>TypeScript</span><span>Express</span><span>SQL Server</span><span>JWT</span>
-            </div>
-            <div class="project-actions">
-              <a class="button primary compact" href="projects/gymfit.html">Read case study</a>
-              <a class="button ghost compact" href="https://github.com/vinh17491/gym" target="_blank" rel="noreferrer">Source ↗</a>
-            </div>
-          </div>
-          <div class="evidence-panel">
-            <p class="micro-label">VERIFIED SIGNAL</p>
-            <div class="evidence-stats">
-              <div><strong>163</strong><span>auth/RBAC assertions</span></div>
-              <div><strong>20</strong><span>route groups</span></div>
-              <div><strong>3</strong><span>application roles</span></div>
-              <div><strong>0001–0006</strong><span>canonical migrations applied</span></div>
-            </div>
-            <code>available = on_hand - reserved</code>
-            <p>Inventory reservation, payment/order history, session revocation and cross-owner authorization are documented and testable.</p>
-          </div>
+    <section class="story-chapter shell" id="work" data-scene="2">
+      <article class="chapter-panel chapter-right project-story gym-story tilt-card">
+        <div class="story-topline"><span>FEATURED SYSTEM</span><span>GYMFIT</span></div>
+        <h2>Three roles.<br>One authoritative backend.</h2>
+        <p>
+          Full-stack gym management and commerce platform with Member, Coach and Admin surfaces,
+          protected APIs, per-variant inventory, reservations, checkout, orders and payment state.
+        </p>
+        <div class="story-metrics">
+          <div><strong>163</strong><span>auth/RBAC assertions</span></div>
+          <div><strong>20</strong><span>route groups</span></div>
+          <div><strong>3</strong><span>role surfaces</span></div>
+        </div>
+        <div class="nature-code">
+          <span>inventory invariant</span>
+          <code>available = on_hand - reserved</code>
+        </div>
+        <div class="project-actions">
+          <a class="button nature-primary magnetic" href="projects/gymfit.html" data-cursor="CASE">Open case study</a>
+          <a class="button glass magnetic" href="https://github.com/vinh17491/gym" target="_blank" rel="noreferrer" data-cursor="CODE">Source ↗</a>
         </div>
       </article>
-
-      <div class="project-pair">
-        <article class="project-card reveal">
-          <div class="project-kicker"><span>FULL-STACK</span><span>BOOKING WORKFLOW</span></div>
-          <h3>Flight Booking System</h3>
-          <p class="project-summary">
-            React/Vite client with an ASP.NET Core API, EF Core, SQLite, JWT authentication, Swagger and separated checkout/payment services.
-          </p>
-          <div class="flow-mini" aria-label="Flight booking system flow">
-            <span>React</span><i>→</i><span>ASP.NET Core</span><i>→</i><span>EF Core</span><i>→</i><span>SQLite</span>
-          </div>
-          <p class="truth-note">Payment behavior is presented as project simulation where the source uses a simulation service; no production payment claim.</p>
-          <div class="project-actions">
-            <a class="button ghost compact" href="projects/flight-booking.html">Read case study</a>
-            <a class="text-link" href="https://github.com/vinh17491/web_maybay" target="_blank" rel="noreferrer">Source ↗</a>
-          </div>
-        </article>
-
-        <article class="project-card reveal">
-          <div class="project-kicker"><span>JAVA</span><span>STATE MACHINE · AUTOMATION</span></div>
-          <h3>Minecraft AutoCraft</h3>
-          <p class="project-summary">
-            Meteor Client addon that performs maximum-batch crafting through native container operations while pausing on unsafe state and waiting for server acknowledgement before the next network mutation.
-          </p>
-          <div class="state-strip" aria-label="Automation state flow">
-            <span>Validate</span><i>→</i><span>Place</span><i>→</i><span>ACK</span><i>→</i><span>Drop</span><i>→</i><span>ACK</span>
-          </div>
-          <p class="truth-note">The module uses explicit acknowledgement states and a 40-tick timeout instead of blind click loops.</p>
-          <div class="project-actions">
-            <a class="button ghost compact" href="projects/autocraft.html">Read case study</a>
-            <a class="text-link" href="https://github.com/vinh17491/minecraft-autocraft" target="_blank" rel="noreferrer">Source ↗</a>
-          </div>
-        </article>
-      </div>
     </section>
 
-    <section class="section shell" id="experience">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">02 / EXPERIENCE</p>
-          <h2>Work that crossed software and real devices.</h2>
+    <section class="story-chapter shell" data-scene="3">
+      <article class="chapter-panel chapter-left project-story flight-story tilt-card">
+        <div class="story-topline"><span>FULL-STACK WORKFLOW</span><span>FLIGHT BOOKING</span></div>
+        <div class="flight-orbit" aria-hidden="true">
+          <span class="flight-city">SGN</span><i><b>✈</b></i><span class="flight-city">HAN</span>
         </div>
-      </div>
-      <div class="timeline">
-        <article class="timeline-item reveal">
-          <div class="timeline-meta">
-            <span>JUN 2026 — SEP 2026</span>
-            <strong>Tin Thong Technology Solutions</strong>
-            <small>Software Development Intern · Software & Engineering</small>
+        <h2>Workflow boundaries before controller bloat.</h2>
+        <p>
+          React/Vite client with ASP.NET Core, JWT Bearer auth, EF Core, SQLite and separated
+          checkout validation, creation, summary and payment-finalization services.
+        </p>
+        <div class="story-flow">
+          <span>React</span><i>→</i><span>API</span><i>→</i><span>Services</span><i>→</i><span>EF Core</span><i>→</i><span>SQLite</span>
+        </div>
+        <div class="project-actions">
+          <a class="button nature-primary magnetic" href="projects/flight-booking.html" data-cursor="CASE">Open case study</a>
+          <a class="button glass magnetic" href="https://github.com/vinh17491/web_maybay" target="_blank" rel="noreferrer" data-cursor="CODE">Source ↗</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="story-chapter shell" data-scene="4">
+      <article class="chapter-panel chapter-right project-story autocraft-story tilt-card">
+        <div class="story-topline"><span>JAVA · STATE MACHINE</span><span>AUTOCRAFT</span></div>
+        <div class="autocraft-visual" aria-hidden="true">
+          <img src="https://raw.githubusercontent.com/vinh17491/vinh17491/main/assets/minecraft-hero.svg" alt="">
+          <div class="autocraft-state"><span>PLACE</span><i>→</i><span>WAIT ACK</span><i>→</i><span>DROP</span><i>→</i><span>WAIT ACK</span></div>
+        </div>
+        <h2>State before speed.</h2>
+        <p>
+          Meteor Client automation that performs native maximum-batch crafting, serializes network
+          mutations around server acknowledgement and pauses instead of guessing when context is unsafe.
+        </p>
+        <div class="project-actions">
+          <a class="button nature-primary magnetic" href="projects/autocraft.html" data-cursor="CASE">Open case study</a>
+          <a class="button glass magnetic" href="https://github.com/vinh17491/minecraft-autocraft" target="_blank" rel="noreferrer" data-cursor="CODE">Source ↗</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="story-chapter shell" id="experience" data-scene="5">
+      <div class="chapter-panel chapter-left experience-story">
+        <p class="section-label">05 / REAL-WORLD WORK</p>
+        <div class="experience-grid">
+          <div class="profile-portrait tilt-card">
+            <img src="https://avatars.githubusercontent.com/u/194791583?v=4" alt="GitHub profile image of Quách Gia Vinh">
+            <span>SOFTWARE DEVELOPMENT INTERN · 2026</span>
           </div>
-          <div class="timeline-body">
+          <div>
+            <h2>Software met physical hardware.</h2>
             <p>
-              Worked across assigned software changes, functional checking, bug reproduction and technical support for integrated point-of-sale workflows and peripherals.
+              At Tin Thong Technology Solutions I worked across assigned software changes,
+              functional checking, bug reproduction and technical support for integrated POS workflows.
             </p>
-            <ul class="clean-list">
-              <li>Modified UI labels, fields, buttons and user-facing messages, then self-tested and revised from feedback.</li>
-              <li>Recorded expected/actual behavior, reproduced issues, retested fixes and performed basic regression checks.</li>
-              <li>Investigated issues across application, driver, port/connection, print queue and device state boundaries before escalation.</li>
-              <li>Worked with POS, receipt/label printers and barcode scanners under defined access and escalation limits.</li>
+            <ul class="story-list">
+              <li><span>01</span> UI changes → self-test → feedback → retest.</li>
+              <li><span>02</span> Expected/actual behavior and basic regression checking.</li>
+              <li><span>03</span> Driver, port, print queue and device-state investigation.</li>
+              <li><span>04</span> POS, receipt/label printer and barcode-scanner workflows.</li>
             </ul>
           </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section shell" id="skills">
-      <div class="section-heading">
-        <div>
-          <p class="section-label">03 / TECHNICAL SCOPE</p>
-          <h2>Only skills I am prepared to defend in an interview.</h2>
-        </div>
-      </div>
-      <div class="skill-matrix">
-        <article class="skill-block reveal"><span>LANGUAGES</span><h3>TypeScript · JavaScript · C# · Java</h3><p>Used across the highlighted web, API and automation projects.</p></article>
-        <article class="skill-block reveal"><span>BACKEND</span><h3>Node.js · Express · ASP.NET Core</h3><p>REST APIs, authentication/authorization, business rules and service boundaries.</p></article>
-        <article class="skill-block reveal"><span>FRONTEND</span><h3>React · Vite · HTML · CSS</h3><p>Feature integration, protected navigation, responsive interfaces and client/API flows.</p></article>
-        <article class="skill-block reveal"><span>DATA</span><h3>SQL Server · SQLite · EF Core</h3><p>Relational modeling, migrations, inventory/state workflows and persistence.</p></article>
-        <article class="skill-block reveal"><span>QUALITY</span><h3>Functional · Regression · API testing</h3><p>Expected/actual analysis, reproduction, retest, authorization coverage and failure-path checks.</p></article>
-        <article class="skill-block reveal"><span>TOOLS</span><h3>Git · GitHub · Postman · Docker</h3><p>Version control, repository workflow, API verification and development tooling.</p></article>
-      </div>
-    </section>
-
-    <section class="section shell" id="about">
-      <div class="about-grid">
-        <div>
-          <p class="section-label">04 / HOW I THINK</p>
-          <h2>Engineering beyond the happy path.</h2>
-        </div>
-        <div class="principles">
-          <article class="principle reveal"><span>01</span><div><h3>Server authority over UI assumptions</h3><p>Authorization belongs at the API boundary. Frontend guards improve navigation; they do not replace backend ownership and role checks.</p></div></article>
-          <article class="principle reveal"><span>02</span><div><h3>State transitions should be explicit</h3><p>Orders, payments and automation are easier to reason about when valid transitions and invalid states are visible rather than implicit.</p></div></article>
-          <article class="principle reveal"><span>03</span><div><h3>Tests are evidence</h3><p>A feature is stronger when its acceptance conditions, negative paths and regression checks can be inspected.</p></div></article>
-          <article class="principle reveal"><span>04</span><div><h3>Limitations are part of the design</h3><p>I prefer an honest boundary over a fake production claim. Case studies include current constraints and what I would improve next.</p></div></article>
         </div>
       </div>
     </section>
 
-    <section class="section shell">
-      <div class="education-card reveal">
-        <div>
-          <p class="section-label">05 / EDUCATION</p>
-          <h2>Software Engineering</h2>
+    <section class="story-chapter shell" id="about" data-scene="6">
+      <div class="chapter-panel chapter-right philosophy-story">
+        <p class="section-label">06 / HOW I THINK</p>
+        <h2>Quiet systems beat loud claims.</h2>
+        <div class="philosophy-grid">
+          <article class="nature-card tilt-card"><span>AUTHORITY</span><h3>Server over UI assumptions.</h3><p>Client guards help navigation. Backend role and ownership checks decide access.</p></article>
+          <article class="nature-card tilt-card"><span>STATE</span><h3>Make transitions explicit.</h3><p>Orders, payments and automation become easier to reason about when state is visible.</p></article>
+          <article class="nature-card tilt-card"><span>EVIDENCE</span><h3>Tests are not decoration.</h3><p>Negative paths and regression checks are part of the feature, not an appendix.</p></article>
+          <article class="nature-card tilt-card"><span>HONESTY</span><h3>Limitations belong in the design.</h3><p>I would rather expose a boundary than fake a production claim I cannot defend.</p></article>
         </div>
-        <div>
-          <strong>Ho Chi Minh City University of Foreign Languages – Information Technology (HUFLIT)</strong>
-          <p>2023 — 2027 · GPA 3.3 / 4.0</p>
-          <p class="muted">Coursework and projects are used as a base; this portfolio emphasizes applied engineering evidence rather than course titles.</p>
+        <div class="skill-cloud" aria-label="Technical skills">
+          <span>TypeScript</span><span>JavaScript</span><span>C#</span><span>Java</span>
+          <span>Node.js</span><span>Express</span><span>ASP.NET Core</span><span>React</span>
+          <span>SQL Server</span><span>SQLite</span><span>EF Core</span><span>Postman</span>
+          <span>Functional Testing</span><span>Regression Testing</span><span>Git</span><span>Docker</span>
         </div>
       </div>
     </section>
 
-    <section class="contact shell reveal" id="contact">
-      <div>
-        <p class="section-label">06 / CONTACT</p>
-        <h2>Review the code. Challenge the decisions.</h2>
-        <p>I am open to software engineering opportunities where backend, full-stack delivery, debugging and software quality matter.</p>
+    <section class="story-chapter final-chapter shell" data-scene="7">
+      <div class="final-card">
+        <p class="section-label">07 / NEXT CONVERSATION</p>
+        <h2>Review the code.<br><span class="gradient-text">Challenge the decisions.</span></h2>
+        <p>
+          Software Engineering · HUFLIT · 2023–2027 · GPA 3.3 / 4.0.<br>
+          Open to software engineering opportunities where backend, full-stack delivery,
+          debugging and software quality matter.
+        </p>
+        <div class="hero-actions">
+          <a class="button nature-primary magnetic" href="mailto:vinhvachocon@gmail.com" data-cursor="MAIL">Email me</a>
+          <a class="button glass magnetic" href="resume.html" data-cursor="OPEN">Resume</a>
+          <a class="button glass magnetic" href="https://github.com/vinh17491" target="_blank" rel="noreferrer" data-cursor="OPEN">GitHub ↗</a>
+        </div>
       </div>
-      <div class="contact-actions">
-        <a class="button primary" href="mailto:vinhvachocon@gmail.com">vinhvachocon@gmail.com</a>
-        <a class="button ghost" href="https://github.com/vinh17491" target="_blank" rel="noreferrer">github.com/vinh17491 ↗</a>
-        <a class="button ghost" href="resume.html">Resume →</a>
-      </div>
+      <footer class="cinematic-footer">
+        <span>© <span id="year"></span> QUÁCH GIA VINH</span>
+        <span>BUILD · TEST · DEBUG · VERIFY</span>
+      </footer>
     </section>
   </main>
 
-  <footer class="shell footer">
-    <span>© <span id="year"></span> Quách Gia Vinh</span>
-    <span>BUILD · TEST · DEBUG · VERIFY</span>
-  </footer>
   <script src="script.js"></script>
+  <script type="module" src="nature-scene.js"></script>
 </body>
 </html>
