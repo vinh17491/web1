@@ -4,296 +4,197 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Quách Gia Vinh — Software Engineer</title>
-  <meta name="description" content="Portfolio of Quách Gia Vinh — software engineer building full-stack systems, authenticated APIs, data workflows, testing and automation.">
-  <meta name="theme-color" content="#0b0d0a">
+  <meta name="description" content="Interactive software engineering portfolio of Quách Gia Vinh — backend systems, full-stack delivery, testing, debugging and automation.">
+  <meta name="theme-color" content="#181818">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://vinh17491.github.io/web1/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Quách Gia Vinh — Software Engineer">
+  <meta property="og:description" content="Engineering work presented as evidence: systems, state, testing and real project case studies.">
+  <meta property="og:image" content="https://unsplash.com/photos/Jf0Tsu4wqNw/download?force=true&w=1400">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23181818'/><text x='50' y='64' text-anchor='middle' font-family='Arial' font-size='42' font-weight='800' fill='white'>QV</text></svg>">
   <link rel="stylesheet" href="styles.css">
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"ProfilePage",
-    "mainEntity":{
-      "@type":"Person",
-      "name":"Quách Gia Vinh",
-      "alternateName":["ZinZin","vinh17491"],
-      "url":"https://vinh17491.github.io/web1/",
-      "sameAs":["https://github.com/vinh17491"],
-      "email":"mailto:vinhvachocon@gmail.com",
-      "jobTitle":"Software Engineer"
-    }
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Quách Gia Vinh","alternateName":["ZinZin","vinh17491"],"url":"https://vinh17491.github.io/web1/","sameAs":["https://github.com/vinh17491"],"email":"mailto:vinhvachocon@gmail.com","jobTitle":"Software Engineer"}}</script>
 </head>
-<body class="editorial-home">
+<body class="portfolio-home">
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="page-wipe" aria-hidden="true"></div>
+  <div class="site-cursor" aria-hidden="true"><span>VIEW</span></div>
 
-  <div class="gp-loader" aria-hidden="true">
-    <div class="gp-loader-mark">QV</div>
-    <div class="gp-loader-line"><span></span></div>
-  </div>
-
-  <div class="gp-cursor" aria-hidden="true">
-    <span class="gp-cursor-label">VIEW</span>
-  </div>
-
-  <header class="gp-header">
-    <a href="#top" class="gp-logo" aria-label="Quách Gia Vinh home" data-cursor="HOME">
-      <span>QUÁCH</span>
-      <span>GIA VINH</span>
-    </a>
-    <nav class="gp-nav" aria-label="Primary navigation">
-      <a href="#work" data-cursor="WORK">Work</a>
+  <header class="play-header">
+    <a class="play-logo" href="#top" data-cursor="HOME"><b>Quách</b><em>Gia Vinh</em></a>
+    <nav class="play-nav" aria-label="Primary navigation">
+      <a href="#projects" data-cursor="WORK">Work</a>
+      <a href="#impressive" data-cursor="LOOK">Impressive</a>
       <a href="#about" data-cursor="ABOUT">About</a>
       <a href="resume.html" data-cursor="OPEN">Resume</a>
-      <a href="mailto:vinhvachocon@gmail.com" data-cursor="MAIL">Contact</a>
     </nav>
-    <button class="gp-menu" type="button" aria-label="Open navigation" aria-expanded="false">Menu</button>
+    <button class="play-menu" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
   </header>
 
   <main id="main">
-    <section class="gp-hero" id="top">
-      <div class="gp-hero-media" aria-hidden="true">
-        <video autoplay muted loop playsinline preload="metadata"
-          poster="https://unsplash.com/photos/Z5Twv9oe3ls/download?force=true&amp;w=1800">
-          <source src="https://www.pexels.com/download/video/3939031/" type="video/mp4">
-        </video>
-        <div class="gp-media-shade"></div>
+    <section class="floating-hero" id="top">
+      <div class="contour-map" aria-hidden="true"></div>
+      <div class="hero-heat heat-a" aria-hidden="true"></div>
+      <div class="hero-heat heat-b" aria-hidden="true"></div>
+
+      <div class="hero-word" aria-hidden="true">PROJECTS.</div>
+      <div class="hero-caption">
+        <span>SOFTWARE ENGINEER · BACKEND / FULL-STACK</span>
+        <p>Three projects. Click the one you want to audit.</p>
       </div>
 
-      <div class="gp-hero-topline">
-        <span>SOFTWARE ENGINEER</span>
-        <span>HO CHI MINH CITY · VIETNAM</span>
-      </div>
+      <div class="project-orbit" id="projects" aria-label="Selected projects">
+        <a class="orbit-card orbit-gym" href="projects/gymfit.html" data-project-card data-depth="1.2" data-cursor="GYMFIT">
+          <img src="https://unsplash.com/photos/Jf0Tsu4wqNw/download?force=true&w=1200" alt="Athlete training on a forest path" fetchpriority="high">
+          <span class="orbit-index">01</span>
+          <div class="orbit-label"><b>GYMFIT</b><small>Full-stack · Auth · Commerce</small></div>
+        </a>
 
-      <div class="gp-hero-title">
-        <h1>
-          <span>QUÁCH</span>
-          <span>GIA VINH</span>
-        </h1>
-      </div>
+        <a class="orbit-card orbit-flight" href="projects/flight-booking.html" data-project-card data-depth="0.85" data-cursor="FLIGHT">
+          <img src="https://unsplash.com/photos/94S3950ulVE/download?force=true&w=1200" alt="Airplane flying over mountains and clouds" fetchpriority="high">
+          <span class="orbit-index">02</span>
+          <div class="orbit-label"><b>FLIGHT BOOKING</b><small>React · ASP.NET Core</small></div>
+        </a>
 
-      <div class="gp-hero-bottom">
-        <p>Backend systems · Full-stack delivery<br>Testing · Debugging · Automation</p>
-        <a href="#intro" class="gp-scroll-link" data-cursor="SCROLL">
-          <span>Explore profile</span><i>↓</i>
+        <a class="orbit-card orbit-minecraft" href="projects/autocraft.html" data-project-card data-depth="1.05" data-cursor="AUTOCRAFT">
+          <img src="https://raw.githubusercontent.com/vinh17491/vinh17491/main/assets/minecraft-hero.svg" alt="Minecraft inspired visual for AutoCraft project" fetchpriority="high">
+          <span class="orbit-index">03</span>
+          <div class="orbit-label"><b>AUTOCRAFT</b><small>Java · State Machine</small></div>
         </a>
       </div>
+
+      <a class="scroll-cue" href="#intro" data-cursor="SCROLL"><span>Scroll to explore</span><i>↓</i></a>
     </section>
 
-    <section class="gp-manifesto gp-light" id="intro">
-      <div class="gp-index">01</div>
-      <div class="gp-manifesto-copy">
-        <p class="gp-kicker">SOFTWARE ENGINEERING, WITHOUT THE EMPTY CLAIMS.</p>
-        <h2>I build things that can be <em>reviewed, broken, tested</em> and defended.</h2>
-      </div>
-      <div class="gp-manifesto-note">
-        <p>
-          From authentication boundaries and relational data to UI integration, regression checks and
-          state machines. The work below is presented as evidence — not a wall of technology logos.
-        </p>
-        <a href="resume.html" class="gp-arrow-link" data-cursor="OPEN">Read my resume <span>↗</span></a>
+    <section class="intro-section light-section" id="intro">
+      <p class="eyebrow">SOFTWARE ENGINEERING, WITHOUT THE EMPTY CLAIMS.</p>
+      <h1>I BUILD THINGS THAT CAN BE <em>REVIEWED, BROKEN, TESTED</em> AND DEFENDED.</h1>
+      <div class="intro-note">
+        <span>01 / PROFILE</span>
+        <p>Authentication boundaries, relational data, UI integration, regression checks and explicit state. The work is presented as evidence — not a wall of technology logos.</p>
       </div>
     </section>
 
-    <section class="gp-work" id="work">
-      <div class="gp-work-head">
-        <div>
-          <span class="gp-kicker">SELECTED ENGINEERING WORK</span>
-          <h2>WORK<br>THAT HOLDS<br>UP UNDER<br>QUESTIONS.</h2>
+    <section class="impressive-section light-section" id="impressive">
+      <div class="impressive-title">IMPRESSIVE.</div>
+      <div class="impressive-intro">
+        <span>02 / MINDSET</span>
+        <p>Three notes I keep close when building: start before certainty, choose the environment that lets you grow, and never confuse shipping with the final chapter.</p>
+      </div>
+
+      <div class="impressive-cards" data-accordion>
+        <article class="impressive-card" tabindex="0" data-impressive-card>
+          <img src="assets/editorial/for-starting.webp" alt="Red-room motivational image about beginning before everything is figured out">
+          <div class="impressive-blur"></div>
+          <h2>FOR STARTING</h2>
+          <div class="impressive-content">
+            <span>START BEFORE CERTAINTY</span>
+            <p>You do not need the whole map before the first commit. Start with the smallest defensible step, learn from what breaks, then let the finish become clearer through iteration.</p>
+            <ul><li>Make the first version real.</li><li>Use feedback as navigation.</li><li>Finish by learning forward.</li></ul>
+          </div>
+        </article>
+
+        <article class="impressive-card" tabindex="0" data-impressive-card>
+          <img src="assets/editorial/right-people.webp" alt="Horse and swan illustration facing a mirror with a winged reflection">
+          <div class="impressive-blur"></div>
+          <h2>FOR THE RIGHT PEOPLE</h2>
+          <div class="impressive-content">
+            <span>ENVIRONMENT CHANGES EXPRESSION</span>
+            <p>The right team does not invent your potential; it gives it room to become visible. I look for people who challenge the work, raise the standard and make honest feedback normal.</p>
+            <ul><li>Good review makes good engineers.</li><li>Standards compound through teams.</li><li>Growth needs both trust and pressure.</li></ul>
+          </div>
+        </article>
+
+        <article class="impressive-card" tabindex="0" data-impressive-card>
+          <img src="assets/editorial/the-end.webp" alt="Pixel-style motivational quote on a dark Minecraft-like background">
+          <div class="impressive-blur"></div>
+          <h2>THE END?</h2>
+          <div class="impressive-content">
+            <span>SHIPPED IS A CHECKPOINT</span>
+            <p>A release is not the end of the system. It is the point where reality starts answering back: users behave differently, assumptions fail and the next version earns its reason to exist.</p>
+            <ul><li>Ship.</li><li>Observe.</li><li>Refine what evidence disproves.</li></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="work-section">
+      <div class="work-heading">
+        <span>03 / SELECTED WORK</span>
+        <h2>WORK<br>THAT SPEAKS<br>LOUDER THAN<br>WORDS.</h2>
+      </div>
+
+      <a class="work-feature" href="projects/gymfit.html" data-cursor="VIEW">
+        <div class="work-media">
+          <video autoplay muted loop playsinline preload="metadata" poster="https://unsplash.com/photos/u8wayDt6GqU/download?force=true&w=1600">
+            <source src="https://www.pexels.com/download/video/5319432/" type="video/mp4">
+          </video>
         </div>
-        <p>Three projects. Different domains. Same standard: make the decisions inspectable.</p>
-      </div>
+        <div class="work-overlay">
+          <span>GYMFIT · 01</span>
+          <h3>THREE ROLES.<br>ONE BACKEND AUTHORITY.</h3>
+          <p>163 auth/RBAC assertions · 20 route groups · variant inventory · order/payment state</p>
+        </div>
+      </a>
 
-      <div class="gp-project-grid">
-        <a class="gp-project gp-project-wide" href="projects/gymfit.html" data-cursor="VIEW">
-          <div class="gp-project-media">
-            <img src="https://unsplash.com/photos/tkoA1sWwHUg/download?force=true&amp;w=1800"
-                 alt="Misty forest with golden morning light">
+      <div class="work-pair">
+        <a class="work-feature" href="projects/flight-booking.html" data-cursor="VIEW">
+          <div class="work-media">
+            <img loading="lazy" src="https://unsplash.com/photos/94S3950ulVE/download?force=true&w=1400" alt="Plane above cloud-covered mountains">
           </div>
-          <div class="gp-project-overlay">
-            <div class="gp-project-meta"><span>01 / GYMFIT</span><span>FULL-STACK · SECURITY · COMMERCE</span></div>
-            <div class="gp-project-title"><h3>Three roles.<br>One backend authority.</h3><span>163 auth/RBAC assertions ↗</span></div>
-          </div>
+          <div class="work-overlay"><span>FLIGHT BOOKING · 02</span><h3>WORKFLOW BEFORE CONTROLLER BLOAT.</h3><p>React · ASP.NET Core · JWT · EF Core · SQLite</p></div>
         </a>
-
-        <a class="gp-project gp-project-tall" href="projects/flight-booking.html" data-cursor="VIEW">
-          <div class="gp-project-media">
-            <img src="https://unsplash.com/photos/5VsWgZ4gOGw/download?force=true&amp;w=1400"
-                 alt="Waterfall surrounded by green forest and mist">
-          </div>
-          <div class="gp-project-overlay">
-            <div class="gp-project-meta"><span>02 / FLIGHT BOOKING</span><span>REACT · ASP.NET CORE</span></div>
-            <div class="gp-project-title"><h3>Workflow before controller bloat.</h3><span>Case study ↗</span></div>
-          </div>
-        </a>
-
-        <a class="gp-project gp-project-square" href="projects/autocraft.html" data-cursor="VIEW">
-          <div class="gp-project-media">
-            <img src="https://unsplash.com/photos/7fP8ONsZcyw/download?force=true&amp;w=1400"
-                 alt="Dark misty evergreen forest">
-          </div>
-          <div class="gp-project-overlay">
-            <div class="gp-project-meta"><span>03 / AUTOCRAFT</span><span>JAVA · STATE MACHINE</span></div>
-            <div class="gp-project-title"><h3>State before speed.</h3><span>ACK-bound automation ↗</span></div>
-          </div>
+        <a class="work-feature" href="projects/autocraft.html" data-cursor="VIEW">
+          <div class="work-media minecraft-media"><img loading="lazy" src="https://raw.githubusercontent.com/vinh17491/vinh17491/main/assets/minecraft-hero.svg" alt="Minecraft themed landscape"></div>
+          <div class="work-overlay"><span>AUTOCRAFT · 03</span><h3>STATE BEFORE SPEED.</h3><p>ACK-bound mutations · explicit state machine · timeout recovery</p></div>
         </a>
       </div>
     </section>
 
-    <section class="gp-marquee" aria-label="Engineering themes">
-      <div class="gp-marquee-track">
-        <span>BUILD WITH INTENT</span><i>✦</i>
-        <span>TEST THE FAILURE PATH</span><i>✦</i>
-        <span>MAKE STATE EXPLICIT</span><i>✦</i>
-        <span>SHIP EVIDENCE</span><i>✦</i>
-        <span>BUILD WITH INTENT</span><i>✦</i>
-        <span>TEST THE FAILURE PATH</span><i>✦</i>
-        <span>MAKE STATE EXPLICIT</span><i>✦</i>
-        <span>SHIP EVIDENCE</span><i>✦</i>
-      </div>
-    </section>
-
-    <section class="gp-story gp-light" id="about">
-      <div class="gp-story-head">
-        <span class="gp-kicker">ROOTED IN SOFTWARE. COMFORTABLE AT THE BOUNDARIES.</span>
-        <h2>Code is only one layer.</h2>
-      </div>
-
-      <div class="gp-story-grid">
-        <div class="gp-story-media gp-sticky-media">
-          <video autoplay muted loop playsinline preload="metadata"
-            poster="https://unsplash.com/photos/vChPu9FNN-Y/download?force=true&amp;w=1200">
+    <section class="about-section light-section" id="about">
+      <div class="about-head"><span>04 / ABOUT</span><h2>CODE IS<br>ONLY ONE<br>LAYER.</h2></div>
+      <div class="about-layout">
+        <div class="about-media">
+          <video autoplay muted loop playsinline preload="metadata" poster="https://unsplash.com/photos/7fP8ONsZcyw/download?force=true&w=1400">
             <source src="https://www.pexels.com/download/video/3661250/" type="video/mp4">
           </video>
-          <span class="gp-media-caption">REAL SYSTEMS HAVE ENVIRONMENTS, DEVICES AND FAILURE STATES.</span>
         </div>
-
-        <div class="gp-story-copy">
-          <article>
-            <span>01 / EXPERIENCE</span>
-            <h3>Software met physical hardware.</h3>
-            <p>
-              During my software development internship at Tin Thong Technology Solutions,
-              I worked across assigned UI changes, functional checks, defect reproduction and technical support
-              around POS systems, receipt/label printers and barcode scanners.
-            </p>
-          </article>
-          <article>
-            <span>02 / QUALITY</span>
-            <h3>Expected. Actual. Reproduce. Retest.</h3>
-            <p>
-              I treat testing as part of implementation: verify the happy path, reproduce the failure,
-              check the fix and run regression where the change can create collateral damage.
-            </p>
-          </article>
-          <article>
-            <span>03 / SYSTEM THINKING</span>
-            <h3>Authority and state must live somewhere explicit.</h3>
-            <p>
-              GymFit keeps authorization at the backend boundary. AutoCraft waits for acknowledgement
-              before the next mutation. Different domains, same principle: hidden state becomes future bugs.
-            </p>
-          </article>
+        <div class="about-copy">
+          <article><span>EXPERIENCE</span><h3>Software met physical hardware.</h3><p>At Tin Thong Technology Solutions I worked across UI changes, functional checks, defect reproduction and support around POS systems, printers and barcode scanners.</p></article>
+          <article><span>QUALITY</span><h3>Expected. Actual. Reproduce. Retest.</h3><p>I treat testing as part of implementation. A feature is stronger when failure paths and regression risk are visible and repeatable.</p></article>
+          <article><span>SYSTEM THINKING</span><h3>Authority and state belong somewhere explicit.</h3><p>GymFit keeps authorization at the backend boundary. AutoCraft waits for acknowledgement before its next mutation. Different domains, same engineering principle.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="gp-capabilities">
-      <div class="gp-capabilities-head">
-        <span class="gp-kicker">WHAT I CAN DEFEND IN AN INTERVIEW</span>
-        <h2>TECHNICAL<br>RANGE.</h2>
-      </div>
-
-      <div class="gp-capability-list">
-        <article>
-          <span class="gp-cap-no">01</span>
-          <h3>Backend & API</h3>
-          <p>Node.js · Express · ASP.NET Core · REST · JWT · authorization · service boundaries</p>
-          <span class="gp-cap-arrow">↗</span>
-        </article>
-        <article>
-          <span class="gp-cap-no">02</span>
-          <h3>Frontend</h3>
-          <p>React · Vite · TypeScript · JavaScript · responsive integration</p>
-          <span class="gp-cap-arrow">↗</span>
-        </article>
-        <article>
-          <span class="gp-cap-no">03</span>
-          <h3>Data</h3>
-          <p>SQL Server · SQLite · EF Core · migrations · relational workflows</p>
-          <span class="gp-cap-arrow">↗</span>
-        </article>
-        <article>
-          <span class="gp-cap-no">04</span>
-          <h3>Software Quality</h3>
-          <p>Functional · regression · API testing · debugging · failure-path analysis</p>
-          <span class="gp-cap-arrow">↗</span>
-        </article>
+    <section class="range-section">
+      <div class="range-head"><span>05 / TECHNICAL RANGE</span><h2>WHAT I CAN<br>DEFEND IN<br>AN INTERVIEW.</h2></div>
+      <div class="range-list">
+        <article><b>01</b><h3>Backend & API</h3><p>Node.js · Express · ASP.NET Core · REST · JWT · authorization · service boundaries</p><i>↗</i></article>
+        <article><b>02</b><h3>Frontend</h3><p>React · Vite · TypeScript · JavaScript · responsive integration</p><i>↗</i></article>
+        <article><b>03</b><h3>Data</h3><p>SQL Server · SQLite · EF Core · migrations · relational workflows</p><i>↗</i></article>
+        <article><b>04</b><h3>Software Quality</h3><p>Functional · regression · API testing · debugging · failure-path analysis</p><i>↗</i></article>
       </div>
     </section>
 
-    <section class="gp-proof gp-light">
-      <div class="gp-proof-photo">
-        <img src="https://unsplash.com/photos/Sv67jNNMpo0/download?force=true&amp;w=1600"
-             alt="Misty mountains and dark evergreen forest">
-      </div>
-      <div class="gp-proof-copy">
-        <span class="gp-kicker">PROOF OVER BUZZWORDS</span>
-        <h2>Numbers only when the repository can back them up.</h2>
-        <div class="gp-proof-stats">
-          <div><strong>163</strong><span>GymFit auth/RBAC assertions</span></div>
-          <div><strong>20</strong><span>API route groups covered</span></div>
-          <div><strong>3</strong><span>role surfaces in GymFit</span></div>
-          <div><strong>3.3/4.0</strong><span>current GPA</span></div>
-        </div>
-        <p>
-          No fake production traffic. No invented customers. No “senior” title because a landing page looks expensive.
-          The portfolio links directly to code, architecture and known limitations.
-        </p>
-      </div>
+    <section class="proof-section light-section">
+      <img loading="lazy" src="https://unsplash.com/photos/Sv67jNNMpo0/download?force=true&w=1600" alt="Misty mountain forest">
+      <div class="proof-copy"><span>06 / PROOF OVER BUZZWORDS</span><h2>NUMBERS ONLY WHEN THE REPOSITORY CAN BACK THEM UP.</h2><div class="proof-grid"><div><b>163</b><small>GymFit auth/RBAC assertions</small></div><div><b>20</b><small>API route groups covered</small></div><div><b>3</b><small>GymFit role surfaces</small></div><div><b>3.3/4.0</b><small>Current GPA</small></div></div></div>
     </section>
 
-    <section class="gp-profile">
-      <div class="gp-profile-name">
-        <span>QUÁCH</span>
-        <span>GIA VINH</span>
-      </div>
-      <div class="gp-profile-info">
-        <div>
-          <span class="gp-kicker">EDUCATION</span>
-          <p>Software Engineering<br>HUFLIT · 2023–2027<br>GPA 3.3 / 4.0</p>
-        </div>
-        <div>
-          <span class="gp-kicker">CURRENT DIRECTION</span>
-          <p>Backend engineering<br>Full-stack systems<br>Software quality</p>
-        </div>
-        <div>
-          <span class="gp-kicker">LINKS</span>
-          <p><a href="resume.html" data-cursor="OPEN">Resume ↗</a><br><a href="https://github.com/vinh17491" target="_blank" rel="noreferrer" data-cursor="OPEN">GitHub ↗</a></p>
-        </div>
-      </div>
+    <section class="identity-section">
+      <h2><span>QUÁCH</span><span>GIA VINH</span></h2>
+      <div class="identity-info"><p><b>EDUCATION</b><br>Software Engineering<br>HUFLIT · 2023–2027<br>GPA 3.3 / 4.0</p><p><b>DIRECTION</b><br>Backend engineering<br>Full-stack systems<br>Software quality</p><p><b>LINKS</b><br><a href="resume.html">Resume ↗</a><br><a href="https://github.com/vinh17491" target="_blank" rel="noreferrer">GitHub ↗</a></p></div>
     </section>
 
-    <section class="gp-contact gp-light">
-      <div>
-        <span class="gp-kicker">READY FOR THE NEXT PROBLEM?</span>
-        <h2>LET'S BUILD<br>SOMETHING<br>WORTH<br>REVIEWING.</h2>
-      </div>
-      <div class="gp-contact-side">
-        <p>Open to software engineering opportunities where backend, full-stack delivery, debugging and quality matter.</p>
-        <a href="mailto:vinhvachocon@gmail.com" class="gp-contact-button" data-cursor="MAIL">
-          <span>Start a conversation</span><i>↗</i>
-        </a>
-      </div>
+    <section class="contact-section light-section">
+      <div><span>07 / NEXT CONVERSATION</span><h2>LET'S BUILD<br>SOMETHING<br>WORTH<br>REVIEWING.</h2></div>
+      <div><p>Open to software engineering opportunities where backend, full-stack delivery, debugging and quality matter.</p><a href="mailto:vinhvachocon@gmail.com" data-cursor="MAIL">Start a conversation <i>↗</i></a></div>
     </section>
   </main>
 
-  <footer class="gp-footer">
-    <span>© <span id="year"></span> QUÁCH GIA VINH</span>
-    <span>SOFTWARE ENGINEER · ZINZIN</span>
-    <a href="#top">BACK TO TOP ↑</a>
-  </footer>
+  <footer class="portfolio-footer"><span>© <span id="year"></span> QUÁCH GIA VINH</span><span>SOFTWARE ENGINEER · ZINZIN</span><a href="#top">BACK TO TOP ↑</a></footer>
 
   <script src="script.js"></script>
   <script src="gallery-home.js"></script>
