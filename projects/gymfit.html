@@ -1,91 +1,92 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GymFit Case Study | Quách Gia Vinh</title>
-  <meta name="description" content="Engineering case study for GymFit: architecture, authentication/RBAC, inventory and payment state, verification, and known limitations.">
-  <meta name="theme-color" content="#071018"><meta name="robots" content="index,follow">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GymFit — Engineering Case Study | Quách Gia Vinh</title>
+  <meta name="description" content="GymFit engineering case study: server-side authority, hardened JWT sessions, ownership checks, inventory reservation, commerce state and verified acceptance coverage.">
+  <meta name="theme-color" content="#171917"><meta name="robots" content="index,follow">
   <link rel="canonical" href="https://vinh17491.github.io/web1/projects/gymfit.html">
   <link rel="stylesheet" href="../styles.css">
 </head>
-<body>
+<body class="case-page">
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header shell">
-  <a class="brand" href="../index.html"><span class="brand-mark">QV</span><span class="brand-copy"><strong>QUÁCH GIA VINH</strong><small>Engineering case study</small></span></a>
-  <nav class="nav" aria-label="Case study navigation"><a href="../index.html#work">Work</a><a href="../resume.html">Resume</a><a href="https://github.com/vinh17491/gym" target="_blank" rel="noreferrer">Source ↗</a></nav>
+<header class="play-header">
+  <a class="play-logo" href="../index.html"><b>Quách</b><em>Gia Vinh</em></a>
+  <nav class="play-nav" aria-label="Case study navigation">
+    <a href="../index.html#projects">Work</a><a href="../resume.html">Resume</a>
+    <a href="https://github.com/vinh17491/gym" target="_blank" rel="noreferrer">Source ↗</a>
+  </nav>
+  <button class="play-menu" type="button" aria-label="Open menu" aria-expanded="false">Menu</button>
 </header>
-<main id="main">
-<section class="case-hero shell">
-  <a class="back-link" href="../index.html#work">← Back to selected work</a>
-  <p class="section-label" style="margin-top:38px">CASE STUDY / 01</p>
-  <h1>GymFit<br><span>system over screen.</span></h1>
-  <p class="case-lead">Full-stack gym management and commerce platform. This case study focuses on the engineering surfaces that can be audited: backend authority, session security, ownership checks, inventory invariants, state transitions, migrations and acceptance evidence.</p>
-  <div class="case-meta">
-    <div><span>Role</span><strong>Full-stack engineering</strong></div>
-    <div><span>Stack</span><strong>React · TypeScript · Express</strong></div>
-    <div><span>Data</span><strong>SQL Server</strong></div>
-    <div><span>Status</span><strong>In progress</strong></div>
-  </div>
-</section>
 
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">01 / PROBLEM</p><h2>Multiple roles, one authoritative backend.</h2></div>
-    <div class="case-copy">
-      <p>GymFit combines public catalog flows with authenticated Member, Coach and Admin workflows. The hard part is not rendering three dashboards; it is keeping authorization, ownership, inventory and order/payment state correct across those surfaces.</p>
-      <p>The implementation treats frontend guards as navigation UX only. API middleware and ownership queries remain authoritative, so changing a URL or client-side state is not enough to widen access.</p>
-      <div class="limitations"><h3>Scope honesty</h3><p>The project is still in progress. Workout-program TASK-008 was documented separately and was not represented as complete in the audited baseline.</p></div>
+<main id="main">
+<section class="case-hero-new">
+  <div class="case-bg">
+    <img src="https://unsplash.com/photos/Jf0Tsu4wqNw/download?force=true&w=2000" alt="Athlete training outdoors in a forest setting">
+  </div>
+  <div class="case-hero-copy">
+    <span>CASE STUDY / 01 · GYMFIT</span>
+    <h1>SYSTEM<br>OVER SCREEN.</h1>
+    <p>Role-based gym management and commerce platform. The interesting engineering surface is not the dashboard aesthetic; it is backend authority, session security, ownership checks, inventory invariants and state transitions.</p>
+    <div class="case-hero-meta">
+      <div><small>ROLE</small><b>Full-stack engineering</b></div>
+      <div><small>STACK</small><b>React · TypeScript · Express</b></div>
+      <div><small>DATA</small><b>SQL Server</b></div>
+      <div><small>STATUS</small><b>In progress</b></div>
     </div>
   </div>
 </section>
 
-<section class="case-section shell">
-  <p class="section-label">02 / ARCHITECTURE</p>
-  <h2 style="margin-top:14px">Request path and authority boundary.</h2>
-  <div class="arch-flow">
-    <div class="arch-node"><b>React / Vite</b><span>UI + route UX</span></div>
-    <div class="arch-node"><b>Axios</b><span>typed API access</span></div>
-    <div class="arch-node"><b>Express routes</b><span>/api surface</span></div>
-    <div class="arch-node"><b>Auth + validation</b><span>server authority</span></div>
-    <div class="arch-node"><b>Controller / service</b><span>business rules</span></div>
-    <div class="arch-node"><b>SQL Server</b><span>persistent state</span></div>
-  </div>
-  <div class="case-cards">
-    <article class="case-card"><span class="tag">AUTHORITY</span><h3>Backend ownership checks</h3><p>Controllers derive actor identity from authenticated request context rather than trusting client-provided owner or role identifiers.</p></article>
-    <article class="case-card"><span class="tag">FRONTEND</span><h3>Single role policy</h3><p>Router guards, sidebar and navigation share a role policy, while API authorization remains the security boundary.</p></article>
-    <article class="case-card"><span class="tag">ERRORS</span><h3>Central failure handling</h3><p>Validation, not-found and error middleware create a consistent failure path rather than ad-hoc controller responses.</p></article>
-    <article class="case-card"><span class="tag">DATA</span><h3>Ordered migrations</h3><p>Canonical migrations are checksummed and applied in order; the audited baseline records migrations 0001–0006.</p></article>
-  </div>
-</section>
-
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">03 / SECURITY</p><h2>JWT was not treated as “login solved.”</h2></div>
-    <div class="case-copy">
-      <p>The hardened auth flow validates signature, issuer, audience, user/session state, token version and current role before route authorization. Refresh credentials are opaque random values stored as hashes.</p>
-      <div class="code-block"><span class="accent">Access token</span> → signature / issuer / audience
-→ live AuthSession + user token_version / role / active state
-→ route role check
-→ ownership query
-
-<span class="accent">Refresh token</span> → opaque credential → SHA-256 hash in DB
-→ atomic rotation
-→ replay detection
-→ token-family revocation</div>
-      <div class="case-cards">
-        <article class="case-card"><span class="tag">REVOCATION</span><h3>Logout and security changes matter</h3><p>Session records allow logout and password/security changes to revoke server-side access instead of relying only on token expiry.</p></article>
-        <article class="case-card"><span class="tag">IDOR</span><h3>Cross-owner access tested</h3><p>Acceptance differentiates separate Member and Coach accounts to verify self/assigned scope instead of testing only role names.</p></article>
+<section class="case-section-new">
+  <div class="case-two-col">
+    <div><span>01 / PROBLEM</span><h2>MULTIPLE ROLES. ONE AUTHORITY.</h2></div>
+    <div class="case-body">
+      <p>GymFit combines public catalog flows with authenticated Member, Coach and Admin workflows. The challenge is keeping authorization, ownership, inventory and order/payment state correct across all three surfaces.</p>
+      <p>The frontend can hide a route. It cannot grant permission. Controllers derive actor identity from authenticated request context and ownership queries remain authoritative at the API boundary.</p>
+      <div class="case-metrics">
+        <div><b>163</b><span>auth/RBAC assertions</span></div>
+        <div><b>20</b><span>API route groups</span></div>
+        <div><b>3</b><span>role surfaces</span></div>
+        <div><b>0001–0006</b><span>canonical migrations</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">04 / COMMERCE</p><h2>Inventory is a state invariant, not a number on a card.</h2></div>
-    <div class="case-copy">
-      <p>Catalog data separates Product and ProductVariant. Inventory is tracked per variant, and availability is derived from on-hand stock minus reservations.</p>
-      <div class="code-block"><span class="good">available = on_hand - reserved</span>
+<section class="case-section-new dark">
+  <div class="case-two-col">
+    <div><span>02 / SECURITY</span><h2>JWT WAS NOT TREATED AS “LOGIN SOLVED.”</h2></div>
+    <div class="case-body">
+      <p>The hardened flow validates signature, issuer, audience, user/session state, token version and live role before authorization. Refresh credentials are opaque random values stored only as SHA-256 hashes.</p>
+      <div class="case-code">ACCESS TOKEN
+→ signature / issuer / audience
+→ live AuthSession
+→ user token_version / role / active state
+→ route role check
+→ ownership query
+
+REFRESH TOKEN
+→ opaque credential
+→ SHA-256 hash in DB
+→ atomic rotation
+→ replay detection
+→ token-family revocation</div>
+      <div class="case-cards-new">
+        <article><span>REVOCATION</span><h3>Logout has server-side meaning.</h3><p>Logout and security changes revoke sessions instead of relying only on access-token expiry.</p></article>
+        <article><span>IDOR</span><h3>Ownership is tested, not assumed.</h3><p>Acceptance differentiates Member A/B and Coach A/B to test self and assigned scope across accounts.</p></article>
+        <article><span>FRONTEND</span><h3>Route guards are UX.</h3><p>Protected navigation improves experience, but never replaces backend role and ownership checks.</p></article>
+        <article><span>FAILURE PATH</span><h3>Replay becomes evidence.</h3><p>Refresh-token reuse triggers family revocation instead of silently issuing another credential.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section-new">
+  <div class="case-two-col">
+    <div><span>03 / COMMERCE</span><h2>INVENTORY IS AN INVARIANT.</h2></div>
+    <div class="case-body">
+      <p>Catalog data separates Products and ProductVariants. Inventory is tracked at variant level, because the purchasable SKU is what actually owns stock.</p>
+      <div class="case-code">available = on_hand - reserved
 
 Product → Variant → Cart → Checkout → Order
                                   ↓
@@ -97,50 +98,49 @@ Product → Variant → Cart → Checkout → Order
 
 Order:   PENDING → CONFIRMED → PROCESSING → SHIPPED → DELIVERED
 Payment: UNPAID → PENDING → PAID / FAILED → REFUNDED</div>
-      <p>Order creation reserves stock. Valid cancellation or expiration releases reservations. Delivery reduces both reserved and on-hand quantities. Order/payment history records actor, transition and time.</p>
+      <p>Creating an order reserves stock. Valid cancellation or expiration releases the reservation. Delivery reduces both reserved and on-hand quantity. Order and payment history preserve actor, transition and time.</p>
     </div>
   </div>
 </section>
 
-<section class="case-section shell">
-  <p class="section-label">05 / VERIFICATION</p>
-  <h2 style="margin-top:14px">Evidence, not “works on my machine.”</h2>
-  <div class="metric-grid">
-    <div class="metric-box"><strong>163</strong><span>auth/RBAC acceptance assertions</span></div>
-    <div class="metric-box"><strong>20</strong><span>API route groups in auth suite</span></div>
-    <div class="metric-box"><strong>3</strong><span>role surfaces: Member / Coach / Admin</span></div>
-    <div class="metric-box"><strong>PASS</strong><span>customer + admin commerce browser flows</span></div>
-  </div>
-  <div class="case-cards">
-    <article class="case-card"><span class="tag">NEGATIVE PATHS</span><h3>Authorization failure is part of acceptance</h3><p>Guest denial, cross-account IDOR, role changes, deactivation, stale token, refresh replay and logout revocation are part of the documented coverage.</p></article>
-    <article class="case-card"><span class="tag">RUNTIME</span><h3>Commerce transitions exercised</h3><p>Variant-aware checkout, inventory reservation/release, order/payment transitions, Bank/QR readiness and Gmail notification flows were documented as passing in TASK-007 handoff.</p></article>
-    <article class="case-card"><span class="tag">BUILD</span><h3>Build gates recorded</h3><p>Backend build/typecheck and lint, frontend TypeScript and production build were recorded as pass, with warnings preserved rather than hidden.</p></article>
-    <article class="case-card"><span class="tag">CLEANUP</span><h3>Acceptance data isolated</h3><p>Acceptance resources were cleaned and canonical database integrity was checked instead of leaving test fixtures mixed into the primary state.</p></article>
-  </div>
-</section>
-
-<section class="case-section shell">
-  <div class="case-grid">
-    <div><p class="section-label">06 / LIMITATIONS</p><h2>What I would not claim.</h2></div>
-    <div class="case-copy">
-      <div class="limitations"><h3>Current boundaries</h3><p>Bank settlement/refunds are manual records rather than Stripe/bank settlement APIs; some legacy modules retain mixed controller/service patterns; strict CSP/exact CORS and a future cookie-based auth model remain improvement areas. These are documented constraints, not hidden production claims.</p></div>
-      <p style="margin-top:22px">The point of exposing limitations is not self-criticism. It makes the engineering boundary reviewable and prevents a demo project from pretending to be a production platform it is not.</p>
+<section class="case-section-new dark">
+  <div class="case-two-col">
+    <div><span>04 / VERIFICATION</span><h2>EVIDENCE, NOT “WORKS ON MY MACHINE.”</h2></div>
+    <div class="case-body">
+      <div class="case-cards-new">
+        <article><span>NEGATIVE PATHS</span><h3>Denial is part of acceptance.</h3><p>Guest denial, cross-account IDOR, role change, deactivation, stale token, refresh replay and logout revocation are documented coverage.</p></article>
+        <article><span>RUNTIME</span><h3>Commerce transitions were exercised.</h3><p>Variant checkout, reservation release, order/payment transitions, Bank/QR readiness and Gmail flows were recorded as passing.</p></article>
+        <article><span>BUILD</span><h3>Warnings were preserved.</h3><p>Backend build/typecheck/lint and frontend TypeScript/production build passed; non-blocking warnings were not rewritten as perfection.</p></article>
+        <article><span>CLEANUP</span><h3>Acceptance data was isolated.</h3><p>Verification resources were cleaned and canonical database integrity was checked after acceptance.</p></article>
+      </div>
     </div>
   </div>
+  <div class="case-media-wide">
+    <video autoplay muted loop playsinline preload="metadata" poster="https://unsplash.com/photos/u8wayDt6GqU/download?force=true&w=1800">
+      <source src="https://www.pexels.com/download/video/5319432/" type="video/mp4">
+    </video>
+  </div>
+  <p style="font-size:10px;opacity:.62;margin-top:10px;text-transform:uppercase">Editorial domain visual — not represented as a GymFit application screenshot.</p>
 </section>
 
-<section class="case-section shell">
-  <p class="section-label">07 / AUDIT TRAIL</p><h2 style="margin-top:14px">Read the evidence in source.</h2>
-  <div class="source-list">
-    <a href="https://github.com/vinh17491/gym/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noreferrer"><span>Architecture</span><span>↗</span></a>
-    <a href="https://github.com/vinh17491/gym/blob/main/docs/AUTH_RBAC_SECURITY_MODEL.md" target="_blank" rel="noreferrer"><span>Authentication, RBAC and ownership model</span><span>↗</span></a>
-    <a href="https://github.com/vinh17491/gym/blob/main/docs/TASK-007_FINAL_HANDOFF.md" target="_blank" rel="noreferrer"><span>TASK-007 final acceptance handoff</span><span>↗</span></a>
-    <a href="https://github.com/vinh17491/gym/blob/main/docs/KNOWN_LIMITATIONS.md" target="_blank" rel="noreferrer"><span>Known limitations</span><span>↗</span></a>
-    <a href="https://github.com/vinh17491/gym" target="_blank" rel="noreferrer"><span>Repository</span><span>↗</span></a>
+<section class="case-section-new">
+  <div class="case-two-col">
+    <div><span>05 / LIMITATIONS</span><h2>WHAT I WOULD NOT CLAIM.</h2></div>
+    <div class="case-body">
+      <p>Bank settlement/refunds are manual records rather than Stripe or direct bank settlement APIs. Some legacy modules retain mixed controller/service patterns. Strict CSP, exact CORS allowlists and a future cookie-based auth design remain improvement areas.</p>
+      <p>The project is still in progress. The audited baseline did not represent the later workout-program scope as complete. That boundary matters more than making the portfolio sound bigger.</p>
+      <div class="case-source-list">
+        <a href="https://github.com/vinh17491/gym/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noreferrer"><span>Architecture</span><span>↗</span></a>
+        <a href="https://github.com/vinh17491/gym/blob/main/docs/AUTH_RBAC_SECURITY_MODEL.md" target="_blank" rel="noreferrer"><span>Authentication / RBAC model</span><span>↗</span></a>
+        <a href="https://github.com/vinh17491/gym/blob/main/docs/TASK-007_FINAL_HANDOFF.md" target="_blank" rel="noreferrer"><span>Verified handoff</span><span>↗</span></a>
+        <a href="https://github.com/vinh17491/gym/blob/main/docs/KNOWN_LIMITATIONS.md" target="_blank" rel="noreferrer"><span>Known limitations</span><span>↗</span></a>
+        <a href="https://github.com/vinh17491/gym" target="_blank" rel="noreferrer"><span>Repository</span><span>↗</span></a>
+      </div>
+    </div>
   </div>
 </section>
 </main>
-<footer class="shell footer"><span>© <span id="year"></span> Quách Gia Vinh</span><a href="../index.html">Portfolio home</a></footer>
+<footer class="case-footer"><span>© <span id="year"></span> QUÁCH GIA VINH</span><a href="../index.html">BACK TO PORTFOLIO ↑</a></footer>
 <script src="../script.js"></script>
 </body>
 </html>
